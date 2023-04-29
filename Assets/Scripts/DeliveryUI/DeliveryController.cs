@@ -17,15 +17,33 @@ public class DeliveryController : MonoBehaviour
             {
                 break;
             }
+            deliveries[i].count = 1;      
+        }
+    }
+
+    public void UpdateItems()
+    {
+        for (var i = 0; i < deliveryItemPanel.childCount; i++)
+        {
+            if (deliveries.Length <= i)
+            {
+                break;
+            }
+            /*if (deliveries[i].count < 1)
+            {
+                deliveryItemPanel.GetChild(i).gameObject.SetActive(false);
+                continue;
+            }*/
             Debug.Log(deliveries[i].name);
+
             deliveryItemPanel.GetChild(i);
             deliveryItemPanel.GetChild(i).GetComponent<Image>().sprite = deliveries[i].artwork;
             deliveryItemPanel.GetChild(i).GetComponent<Image>().color = Color.white;
             deliveryItemPanel.GetChild(i).GetComponent<ItemSlot>().SetDeliveryItem(deliveries[i]);
             deliveryItemPanel.GetChild(i).Find("Name").GetComponent<TMP_Text>().text = deliveries[i].name;
+
         }
     }
-
     public void SelectDelivery(ItemSlot itemSlot)
     {
 

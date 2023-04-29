@@ -125,4 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  _house: {fileID: 0}
+  gameData: {fileID: 11400000, guid: c7efc200ac5820a4498ce32708a12b18, type: 2}
+  artwork: {fileID: 0}

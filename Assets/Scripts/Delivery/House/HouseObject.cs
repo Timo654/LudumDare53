@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class HouseObject : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private House _house;
+    public GameManager gameManager;
+    [SerializeField] private DataContainer gameData;
+    public Sprite artwork;
+    public Person resident;
+
+    private void Start()
+    {
+        resident = new Person(gameData.personSprites[Random.Range(0, gameData.personSprites.Length)], gameData.Items[Random.Range(0, gameData.Items.Length)]);
+        artwork = gameData.houseSprites[Random.Range(0, gameData.houseSprites.Length)];
+        GetComponent<SpriteRenderer>().sprite = artwork;
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
-        gameManager.currentHouse = _house;
+        BoxCollider2D p = gameObject.GetComponent<BoxCollider2D>();
+        p.enabled = false;
+        gameManager.currentHouse = this;
         gameManager.OnGameStateChanged(GameState.Delivery);
         Debug.Log("Got to a house.");
     }
 
-    public void SetHouse(House house)
-    {
-        _house = house;
-    }
-
-    public House GetHouse()
-    {
-        return _house;
-    }
 
 }

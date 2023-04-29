@@ -19,9 +19,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject MobileUI; // TODO
     [SerializeField] GameObject deliveryPanel;
-    public House currentHouse;
+    public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
+    private DeliveryController deliveryController;
 
     private EventSystem EVRef;
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("mobile!");
             MobileUI.SetActive(true);
         }
+        deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
         OnGameStateChanged(GameState.Start);
     }
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
                 HandleRunning();
                 break;
             case GameState.Delivery:
-                Debug.Log($"switched game state to running");
+                Debug.Log($"switched game state to delivery");
                 HandleDelivery();
                 break;
             case GameState.Lose:
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
     void HandleStart()
     {
         Debug.Log($"switched game state to start");
-        PlayerPrefs.SetInt("Score", 0);
+        PlayerPrefs.SetInt("Happiness", 0);
         OnGameStateChanged(GameState.Running);
     }
 
@@ -96,6 +98,7 @@ public class GameManager : MonoBehaviour
     void HandleDelivery()
     {
         PauseGame();
+        deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
         deliveryPanel.SetActive(false);
         if (currentHouse != null)
         {
-            if (currentHouse.resident.desiredItem == deliveryItem)
+            if (currentHouse.resident.GetDesiredItem() == deliveryItem)
             {
                 Debug.Log("got the correct item!");
                 scoreToAdd = 1000;
@@ -121,6 +124,7 @@ public class GameManager : MonoBehaviour
             AddScore(scoreToAdd);
             Debug.Log("Current happiness is at " + GetHappiness());
         }
+        deliveryItem.count -= 1;
         UnpauseGame();
     }
 

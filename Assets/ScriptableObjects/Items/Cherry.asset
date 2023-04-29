@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item_name: Cherry
   artwork: {fileID: 21300000, guid: 9a35bf77968b26843af0cfe30d054378, type: 3}
-  Count: 0
+  count: 1
+  text:
+  - The person who seems to have a hankering for the juicy, bite-sized fruit.
+  - The recipient who seems to be craving the sweet, succulent, bite-sized treat.
+  - The gentleman who appears to be eagerly anticipating a certain type of small
+    fruit.
+  - The individual whose attention is fixed on the plump, round, crimson fruit.

@@ -7,5 +7,6 @@ public class DeliveryItem : ScriptableObject
 {
     public string item_name;
     public Sprite artwork;
-    public uint Count;
+    public uint count;
+    public string[] text;
 }
