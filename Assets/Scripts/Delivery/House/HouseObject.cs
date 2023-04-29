@@ -43,9 +43,17 @@ public class HouseObject : MonoBehaviour
         BoxCollider2D p = gameObject.GetComponent<BoxCollider2D>();
         p.enabled = false;
         gameManager.currentHouse = this;
-        gameManager.OnGameStateChanged(GameState.Delivery);
+        StartCoroutine(BrakeAtHouse());
         Debug.Log("Got to a house.");
     }
 
+    private IEnumerator BrakeAtHouse()
+    {
+        gameManager.disablePlayerMovementInput(); 
+        // play brake sound here?
+        yield return new WaitForSecondsRealtime(1f);
+        gameManager.OnGameStateChanged(GameState.Delivery);
+        gameManager.enablePlayerMovementInput();
+    }
 
 }

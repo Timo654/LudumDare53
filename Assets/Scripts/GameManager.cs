@@ -46,6 +46,16 @@ public class GameManager : MonoBehaviour
         inventory.Add(item);
     }
 
+    public void disablePlayerMovementInput()
+    {
+        player.GetComponent<Player_Walk>().enabled = false;
+    }
+
+    public void enablePlayerMovementInput()
+    {
+        player.GetComponent<Player_Walk>().enabled = true;
+    }
+
     public void OnGameStateChanged(GameState newState)
     {
         if (_currentState.Equals(GameState.Win) || _currentState.Equals(GameState.Lose))
