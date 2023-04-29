@@ -24,7 +24,7 @@ public class HouseController : MonoBehaviour
             Debug.Log(house.item);
             gameManager.AddToInventory(house.item);
         }
-      
+        gameManager.ShuffleInventory();
     }
 
     // Update is called once per frame

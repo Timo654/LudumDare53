@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
@@ -39,6 +38,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void ShuffleInventory()
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            DeliveryItem temp = inventory[i];
+            int randomIndex = Random.Range(i, inventory.Count);
+            inventory[i] = inventory[randomIndex];
+            inventory[randomIndex] = temp;
+        }
     }
 
     public void AddToInventory(DeliveryItem item)
