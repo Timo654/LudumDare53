@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class HouseController : MonoBehaviour
 {
-
-    [SerializeField] private Transform housesParent;
     [SerializeField] public GameManager gameManager;
     [SerializeField] public uint houseCount;
     public GameObject housePrefab;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         float prev_x = 0;
         float x;
@@ -20,9 +18,11 @@ public class HouseController : MonoBehaviour
             Debug.Log(x);
             Debug.Log(x - prev_x);
             prev_x = x;
-            GameObject obj = Instantiate(housePrefab, new Vector3(x, 0.5f, 0), Quaternion.identity);
+            GameObject obj = Instantiate(housePrefab, new Vector3(x, 1f, 0), Quaternion.identity);
             HouseObject house = obj.GetComponent<HouseObject>();
             house.gameManager = gameManager;
+            Debug.Log(house.item);
+            gameManager.AddToInventory(house.item);
         }
       
     }

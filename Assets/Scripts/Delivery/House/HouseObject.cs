@@ -8,10 +8,11 @@ public class HouseObject : MonoBehaviour
     [SerializeField] private DataContainer gameData;
     public Sprite artwork;
     public Person resident;
-
-    private void Start()
+    public DeliveryItem item;
+    private void Awake()
     {
-        resident = new Person(gameData.personSprites[Random.Range(0, gameData.personSprites.Length)], gameData.Items[Random.Range(0, gameData.Items.Length)]);
+        item = new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1);
+        resident = new Person(gameData.personSprites[Random.Range(0, gameData.personSprites.Length)], item);
         artwork = gameData.houseSprites[Random.Range(0, gameData.houseSprites.Length)];
         GetComponent<SpriteRenderer>().sprite = artwork;
         GetComponent<SpriteRenderer>().color = Color.white;

@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame ()
     {
         //AudioManager.FadeMusicOut(1);
-        StartCoroutine(DelaySceneLoad(2, "Main"));
+        StartCoroutine(DelaySceneLoad(2, "Delivery"));
     }
     public void OpenCredits ()
     {

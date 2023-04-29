@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3415eb2ee4a1047913ce931158368d, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
-  item_name: Banana
+  itemName: Banana
   artwork: {fileID: 21300000, guid: 1ebdd648a7571c544a58d58d05611cb0, type: 3}
-  count: 0
   text:
   - The recipient who seems to have a hankering for the soft, curved produce.
   - The customer whose mouth is watering at the sight of the soft, curved fruit.

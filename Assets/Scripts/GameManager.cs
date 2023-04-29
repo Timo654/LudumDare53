@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private GameState _currentState;
     private int _currentHappiness = 1000;
     private DeliveryController deliveryController;
-
+    public List<DeliveryItem> inventory = new();
     private EventSystem EVRef;
 
     // Start is called before the first frame update
@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void AddToInventory(DeliveryItem item)
+    {
+        inventory.Add(item);
     }
 
     public void OnGameStateChanged(GameState newState)
@@ -107,7 +112,7 @@ public class GameManager : MonoBehaviour
     public void HandOverItem(DeliveryItem deliveryItem)
     {
         int scoreToAdd;
-        Debug.Log("selected" + deliveryItem.name);
+        Debug.Log("selected" + deliveryItem.GetName());
         deliveryPanel.SetActive(false);
         if (currentHouse != null)
         {
@@ -124,7 +129,7 @@ public class GameManager : MonoBehaviour
             AddScore(scoreToAdd);
             Debug.Log("Current happiness is at " + GetHappiness());
         }
-        deliveryItem.count -= 1;
+        deliveryItem.decrementCount();
         UnpauseGame();
     }
 

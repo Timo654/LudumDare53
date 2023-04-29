@@ -8,7 +8,7 @@ public class DataContainer : ScriptableObject
     public Sprite[] houseSprites;
     public Sprite[] personSprites;
     public string[] personNames;
-    public DeliveryItem[] Items;
+    public DeliveryItemData[] Items;
 
 
 }

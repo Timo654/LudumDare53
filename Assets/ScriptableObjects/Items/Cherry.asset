@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3415eb2ee4a1047913ce931158368d, type: 3}
   m_Name: Cherry
   m_EditorClassIdentifier: 
-  item_name: Cherry
+  itemName: Cherry
   artwork: {fileID: 21300000, guid: 9a35bf77968b26843af0cfe30d054378, type: 3}
-  count: 1
   text:
   - The person who seems to have a hankering for the juicy, bite-sized fruit.
   - The recipient who seems to be craving the sweet, succulent, bite-sized treat.
