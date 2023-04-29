@@ -17,9 +17,8 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private Transform startPos;
-    [SerializeField] private Transform endPos;
     [SerializeField] private GameObject MobileUI; // TODO
+    [SerializeField] GameObject deliveryPanel;
     private GameState _currentState;
     private int _currentHappiness = 10000;
 
@@ -85,7 +84,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Score", 0);
-        player.position = startPos.position;
         OnGameStateChanged(GameState.Running);
     }
 
@@ -96,10 +94,17 @@ public class GameManager : MonoBehaviour
 
     void HandleDelivery()
     {
-        // TODO
+        //PauseGame();
+        deliveryPanel.SetActive(true);
+        EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
+            .gameObject); // set current selected button
     }
 
-
+    public void HandOverItem(DeliveryItem deliveryItem)
+    {
+        Debug.Log("selected" + deliveryItem.name);
+        deliveryPanel.SetActive(false);
+    }
     void HandleLoss()
     {
         Time.timeScale = 1.0f;
