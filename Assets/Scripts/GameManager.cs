@@ -148,7 +148,14 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         //SceneManager.LoadScene(5);
-        StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
+        if (_currentHappiness > 3000)
+        {
+            StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
+        }
+        else
+        {
+            StartCoroutine(DelaySceneLoad(2, "BadEnd"));
+        }
     }
 
     IEnumerator DelaySceneLoad(float delay, string scene)

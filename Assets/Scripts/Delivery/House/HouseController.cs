@@ -18,7 +18,7 @@ public class HouseController : MonoBehaviour
             Debug.Log(x);
             Debug.Log(x - prev_x);
             prev_x = x;
-            GameObject obj = Instantiate(housePrefab, new Vector3(x, 1f, 0), Quaternion.identity);
+            GameObject obj = Instantiate(housePrefab, new Vector3(x, 1.6f, 0), Quaternion.identity);
             HouseObject house = obj.GetComponent<HouseObject>();
             house.gameManager = gameManager;
             Debug.Log(house.item);
