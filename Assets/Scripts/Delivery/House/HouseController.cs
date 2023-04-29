@@ -14,7 +14,7 @@ public class HouseController : MonoBehaviour
         // generate houses
         for (var i= 0; i < houseCount; i++)
         {
-            x = prev_x + Random.Range(10, 20);
+            x = prev_x + Random.Range(15, 25);
             Debug.Log(x);
             Debug.Log(x - prev_x);
             prev_x = x;
