@@ -24,8 +24,8 @@ public class DeliveryController : MonoBehaviour
             Debug.Log(gameManager.inventory[i].GetName());
 
             deliveryItemPanel.GetChild(i);
-            deliveryItemPanel.GetChild(i).GetComponent<Image>().sprite = gameManager.inventory[i].GetArtwork();
-            deliveryItemPanel.GetChild(i).GetComponent<Image>().color = Color.white;
+            deliveryItemPanel.GetChild(i).GetChild(0).GetComponent<Image>().sprite = gameManager.inventory[i].GetArtwork();
+            deliveryItemPanel.GetChild(i).GetChild(0).GetComponent<Image>().color = Color.white;
             deliveryItemPanel.GetChild(i).GetComponent<ItemSlot>().SetDeliveryItem(gameManager.inventory[i]);
             deliveryItemPanel.GetChild(i).Find("Name").GetComponent<TMP_Text>().text = gameManager.inventory[i].GetName();
 
