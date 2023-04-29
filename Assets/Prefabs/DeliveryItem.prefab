@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Banana
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
-  m_sharedMaterial: {fileID: -4870790103433255552, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e195a9346680a24419aa085a5d2b1710, type: 2}
+  m_sharedMaterial: {fileID: -4870790103433255552, guid: e195a9346680a24419aa085a5d2b1710, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

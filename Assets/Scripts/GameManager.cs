@@ -31,11 +31,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Application.isMobilePlatform)
-        {
-            Debug.Log("mobile!");
-            MobileUI.SetActive(true);
-        }
         deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
         OnGameStateChanged(GameState.Start);
@@ -100,11 +95,21 @@ public class GameManager : MonoBehaviour
     void HandleRunning()
     {
         UnpauseGame();
+        if (Application.isMobilePlatform)
+        {
+            Debug.Log("mobile!");
+            MobileUI.SetActive(true);
+        }
     }
 
     void HandleDelivery()
     {
         PauseGame();
+        if (Application.isMobilePlatform)
+        {
+            Debug.Log("mobile!");
+            MobileUI.SetActive(false);
+        }
         deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
         hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();
@@ -136,9 +141,9 @@ public class GameManager : MonoBehaviour
             AddScore(scoreToAdd);
             Debug.Log("Current happiness is at " + GetHappiness());
         }
-  
         deliveryItem.decrementCount();
-        UnpauseGame();
+
+        OnGameStateChanged(GameState.Running);
     }
 
     void HandleLoss()
