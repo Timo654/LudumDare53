@@ -11,6 +11,7 @@ public class HouseObject : MonoBehaviour
     public Person resident;
     public DeliveryItem item;
     private TextMeshPro mText;
+    private SpriteRenderer personSprite;
     private void Awake()
     {
         item = new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1);
@@ -19,6 +20,8 @@ public class HouseObject : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = artwork;
         GetComponent<SpriteRenderer>().color = Color.white;
         mText = transform.GetChild(0).gameObject.GetComponent<TextMeshPro>();
+        personSprite = transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
+        personSprite.sprite = resident.GetArtwork();
     }
 
     public void SetText(string text)

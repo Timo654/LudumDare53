@@ -125,6 +125,7 @@ public class GameManager : MonoBehaviour
 
     void HandleDelivery()
     {
+        disablePlayerMovementInput();
         PauseGame();
         if (Application.isMobilePlatform)
         {
@@ -137,7 +138,6 @@ public class GameManager : MonoBehaviour
         hintPanel.SetActive(true);
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
-        disablePlayerMovementInput();
     }
 
     public void HandOverItem(DeliveryItem deliveryItem)
