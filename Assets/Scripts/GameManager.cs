@@ -124,16 +124,19 @@ public class GameManager : MonoBehaviour
             if (currentHouse.resident.GetDesiredItem().GetName() == deliveryItem.GetName())
             {
                 Debug.Log("got the correct item!");
-                scoreToAdd = 1000;
+                scoreToAdd = 500;
+                StartCoroutine(currentHouse.SetTemporaryText("good"));
             }
             else
             {
                 Debug.Log("wrong item.......");
                 scoreToAdd = -200;
+                StartCoroutine(currentHouse.SetTemporaryText("bad..."));
             }
             AddScore(scoreToAdd);
             Debug.Log("Current happiness is at " + GetHappiness());
         }
+  
         deliveryItem.decrementCount();
         UnpauseGame();
     }
