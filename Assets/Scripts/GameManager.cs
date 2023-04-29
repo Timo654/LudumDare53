@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public enum GameState
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject MobileUI; // TODO
     [SerializeField] GameObject deliveryPanel;
+    [SerializeField] GameObject hintPanel;
     public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
@@ -105,6 +107,8 @@ public class GameManager : MonoBehaviour
         PauseGame();
         deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
+        hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();
+        hintPanel.SetActive(true);
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
     }
@@ -114,9 +118,10 @@ public class GameManager : MonoBehaviour
         int scoreToAdd;
         Debug.Log("selected" + deliveryItem.GetName());
         deliveryPanel.SetActive(false);
+        hintPanel.SetActive(false);
         if (currentHouse != null)
         {
-            if (currentHouse.resident.GetDesiredItem() == deliveryItem)
+            if (currentHouse.resident.GetDesiredItem().GetName() == deliveryItem.GetName())
             {
                 Debug.Log("got the correct item!");
                 scoreToAdd = 1000;
