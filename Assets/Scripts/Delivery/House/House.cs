@@ -6,6 +6,5 @@ using UnityEngine;
 public class House : ScriptableObject
 {
     public Sprite artwork;
-    public DeliveryItem desired_item;
-    public string[] dialogue; // maybe, not sure how to do it yet
+    public Person resident;
 }

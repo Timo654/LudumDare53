@@ -19,8 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject MobileUI; // TODO
     [SerializeField] GameObject deliveryPanel;
+    public House currentHouse;
     private GameState _currentState;
-    private int _currentHappiness = 10000;
+    private int _currentHappiness = 1000;
 
     private EventSystem EVRef;
 
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     void HandleDelivery()
     {
-        //PauseGame();
+        PauseGame();
         deliveryPanel.SetActive(true);
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
@@ -102,9 +103,27 @@ public class GameManager : MonoBehaviour
 
     public void HandOverItem(DeliveryItem deliveryItem)
     {
+        int scoreToAdd;
         Debug.Log("selected" + deliveryItem.name);
         deliveryPanel.SetActive(false);
+        if (currentHouse != null)
+        {
+            if (currentHouse.resident.desiredItem == deliveryItem)
+            {
+                Debug.Log("got the correct item!");
+                scoreToAdd = 1000;
+            }
+            else
+            {
+                Debug.Log("wrong item.......");
+                scoreToAdd = -200;
+            }
+            AddScore(scoreToAdd);
+            Debug.Log("Current happiness is at " + GetHappiness());
+        }
+        UnpauseGame();
     }
+
     void HandleLoss()
     {
         Time.timeScale = 1.0f;
