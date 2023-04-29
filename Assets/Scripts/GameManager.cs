@@ -152,13 +152,13 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("got the correct item!");
                 scoreToAdd = 500;
-                StartCoroutine(currentHouse.SetTemporaryText("good"));
+                StartCoroutine(currentHouse.SetTemporaryText(":)"));
             }
             else
             {
                 Debug.Log("wrong item.......");
                 scoreToAdd = -200;
-                StartCoroutine(currentHouse.SetTemporaryText("bad..."));
+                StartCoroutine(currentHouse.SetTemporaryText(":("));
             }
             AddScore(scoreToAdd);
             Debug.Log("Current happiness is at " + GetHappiness());
@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         //SceneManager.LoadScene(5);
-        if (_currentHappiness > 3000)
+        if (_currentHappiness > 2900)
         {
             StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
         }
