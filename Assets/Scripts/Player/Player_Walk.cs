@@ -36,7 +36,7 @@ public class Player_Walk : MonoBehaviour
 
 
     // Audio
-    private EventInstance playerFootsteps;
+    public EventInstance playerFootsteps;
     
     private void Start() {
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);

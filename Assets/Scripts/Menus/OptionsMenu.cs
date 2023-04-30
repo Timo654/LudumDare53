@@ -38,8 +38,8 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
         // TODO
-        //sfxSlider.value = 
-        //musicSlider.value = 
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
         if (Screen.fullScreen)
         {
             fullscreenToggle.isOn = true;
