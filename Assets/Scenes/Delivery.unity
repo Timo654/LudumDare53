@@ -2104,7 +2104,7 @@ MonoBehaviour:
   hintPanel: {fileID: 1212241646}
   audioManager: {fileID: 335751183}
   timerCounter: {fileID: 98089650}
-  helpText: {fileID: 0}
+  helpText: {fileID: 1143138891}
   currentHouse: {fileID: 0}
 --- !u!114 &515775129
 MonoBehaviour:

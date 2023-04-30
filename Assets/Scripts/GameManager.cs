@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject hintPanel;
     [SerializeField] AudioManager audioManager;
     [SerializeField] GameObject timerCounter;
-    public TextMeshProUGUI helpText;
+    public TextMeshPro helpText;
     private Timer timer;
 
     public HouseObject currentHouse;
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
         timerCounter.SetActive(true);
-        timer.StartTimer(5f);
+        timer.StartTimer(7f);
     }
 
     public void HandOverItem(DeliveryItem deliveryItem)
