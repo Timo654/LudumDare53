@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
 
     void HandleWin()
     {
+        DisablePlayerMovementInput();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         //SceneManager.LoadScene(5);
         if (_currentHappiness > 2900)

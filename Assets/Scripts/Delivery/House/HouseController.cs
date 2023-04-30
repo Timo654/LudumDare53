@@ -8,6 +8,7 @@ public class HouseController : MonoBehaviour
     [SerializeField] public DataContainer gameData;
     public GameObject housePrefab;
     public GameObject treePrefab;
+    public GameObject endTrigger;
     private SpriteRenderer tree;
     // Start is called before the first frame update
     void Awake()
@@ -43,6 +44,7 @@ public class HouseController : MonoBehaviour
             Debug.Log(house.item);
             gameManager.AddToInventory(house.item);
         }
+        endTrigger.transform.position = new Vector3(Random.Range(prev_x + 20f, prev_x + 60f), 0.4f, 0);
         gameManager.AddToInventory(new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1)); // add a single extra item
         gameManager.ShuffleInventory();
     }

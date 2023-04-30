@@ -27,7 +27,7 @@ public class Player_Jump : MonoBehaviour
     [SerializeField] [Tooltip("The fastest speed the character can fall")] public float speedLimit;
     [SerializeField, Range(0f, 0.3f)] [Tooltip("How long should coyote time last?")] public float coyoteTime = 0.15f;
     [SerializeField, Range(0f, 0.3f)] [Tooltip("How far from ground should we cache your jump?")] public float jumpBuffer = 0.15f;
-
+    [SerializeField] private Animator playerAnimator;
     [Header("Calculations")]
     public float jumpSpeed;
     private float defaultGravityScale;
@@ -55,14 +55,14 @@ public class Player_Jump : MonoBehaviour
     private void OnEnable()
     {
         // Enable controls stuff
-        jump = playerControls.Player.Jump;
+        /*jump = playerControls.Player.Jump;
         jump.started += OnJump;
         jump.canceled += OnJump;
-        jump.Enable();
+        jump.Enable();*/
     }
     private void OnDisable()
     {
-        jump.Disable();
+        //jump.Disable();
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -133,7 +133,6 @@ public class Player_Jump : MonoBehaviour
     {
         //Get velocity from Rigidbody 
         velocity = body.velocity;
-
         //Keep trying to do a jump, for as long as desiredJump is true
         if (desiredJump)
         {
