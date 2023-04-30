@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec3415eb2ee4a1047913ce931158368d, type: 3}
-  m_Name: Apple
+  m_Name: Glock17
   m_EditorClassIdentifier: 
-  itemName: Apple
-  artwork: {fileID: 21300000, guid: 3b1b96fe398ea624488d1a50647c8f7a, type: 3}
+  itemName: Glock
+  artwork: {fileID: 0}
   text:
-  - They often order a red, yellow or green fruit.
-  - I don't think they're very thick-skinned.
-  - I've heard they're pretty knowledgeable.
-  - I'd sure love a pie just about now.
-  - Is it autumn yet?
-  - Plenty of seeds.
+  - A part of every normal American breakfast.
+  - Originates from Europe.
+  - Fits in your hand well.
+  - Probably not too tasty.
+  - 'Choking Hazard: May not be suitable for children under 3 years old.'
+  - Hard to chew.

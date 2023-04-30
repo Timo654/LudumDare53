@@ -15,7 +15,11 @@ MonoBehaviour:
   itemName: Banana
   artwork: {fileID: 21300000, guid: 1ebdd648a7571c544a58d58d05611cb0, type: 3}
   text:
-  - The recipient who seems to have a hankering for the soft, curved produce.
-  - The customer whose mouth is watering at the sight of the soft, curved fruit.
-  - The person who appears to be craving a sweet, peelable treat.
-  - The gentleman whose eyes are fixed on the potassium-rich snack.
+  - Not a fan of the green ones...
+  - There's a bunch of them back there.
+  - Hard outside, yet soft and sweet inside.
+  - I could go for a smoothie just about now.
+  - Are they crazy!?
+  - Potassium.
+  - A nice curve.
+  - They prefer the ones that are easy to peel.
