@@ -56,14 +56,22 @@ public class GameManager : MonoBehaviour
         inventory.Add(item);
     }
 
-    public void disablePlayerMovementInput()
+    public void DisablePlayerMovementInput()
     {
         player.GetComponent<Player_Walk>().enabled = false;
+        player.GetComponent<Player_Jump>().enabled = false;
     }
 
-    public void enablePlayerMovementInput()
+    public void EnablePlayerMovementInput()
     {
         player.GetComponent<Player_Walk>().enabled = true;
+        StartCoroutine(EnableJump());
+    }
+
+    private IEnumerator EnableJump()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        player.GetComponent<Player_Jump>().enabled = true;
     }
 
     public void OnGameStateChanged(GameState newState)
@@ -114,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     void HandleRunning()
     {
-        enablePlayerMovementInput();
+        EnablePlayerMovementInput();
         UnpauseGame();
         if (Application.isMobilePlatform)
         {
@@ -125,7 +133,7 @@ public class GameManager : MonoBehaviour
 
     void HandleDelivery()
     {
-        disablePlayerMovementInput();
+        DisablePlayerMovementInput();
         PauseGame();
         if (Application.isMobilePlatform)
         {

@@ -43,6 +43,7 @@ public class HouseController : MonoBehaviour
             Debug.Log(house.item);
             gameManager.AddToInventory(house.item);
         }
+        gameManager.AddToInventory(new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1)); // add a single extra item
         gameManager.ShuffleInventory();
     }
 

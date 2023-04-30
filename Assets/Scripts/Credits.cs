@@ -47,7 +47,7 @@ public class Credits : MonoBehaviour
 
     IEnumerator CreditsEnd()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f); // TODO fadeout?
         SceneManager.LoadScene("MainMenu");
     }
 }

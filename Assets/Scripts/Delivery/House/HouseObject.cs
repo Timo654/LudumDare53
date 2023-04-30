@@ -52,11 +52,10 @@ public class HouseObject : MonoBehaviour
 
     private IEnumerator BrakeAtHouse()
     {
-        gameManager.disablePlayerMovementInput(); 
+        gameManager.DisablePlayerMovementInput(); 
         // play brake sound here?
         yield return new WaitForSecondsRealtime(1f);
         gameManager.OnGameStateChanged(GameState.Delivery);
-        gameManager.enablePlayerMovementInput();
     }
 
 }

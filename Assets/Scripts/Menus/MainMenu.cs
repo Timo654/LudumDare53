@@ -31,7 +31,8 @@ public class MainMenu : MonoBehaviour
     IEnumerator DelaySceneLoad(float delay, string scene)
     {
         //AudioManager.FadeMusicOut(delay);
-        yield return new WaitForSeconds(delay);
+        //yield return new WaitForSeconds(delay); TODO
+        yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(scene);
     }
 
