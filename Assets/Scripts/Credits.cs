@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using FMOD.Studio;
 
 public class Credits : MonoBehaviour
 {
     private PlayerControls playerControls;
     private InputAction escape;
     private InputAction interact;
+
+    [SerializeField] private AudioManager audioManager;
+    private EventInstance creditMusicEventInstance;
 
     private void Awake()
     {
@@ -37,6 +42,8 @@ public class Credits : MonoBehaviour
 
     private void Start()
     {
+        creditMusicEventInstance = AudioManager.instance.CreateInstance(FMODEvents.instance.creditmusic);
+        creditMusicEventInstance.start();
     }
 
     // Start is called before the first frame update
@@ -47,6 +54,8 @@ public class Credits : MonoBehaviour
 
     IEnumerator CreditsEnd()
     {
+        creditMusicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        creditMusicEventInstance.release();
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene("MainMenu");
     }
