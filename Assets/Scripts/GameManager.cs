@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
+using FMODUnity;
+using FMOD.Studio;
 
 public enum GameState
 {
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     private DeliveryController deliveryController;
     public List<DeliveryItem> inventory = new();
     private EventSystem EVRef;
+    private EventInstance Box;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
         deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
         OnGameStateChanged(GameState.Start);
+        Box = AudioManager.instance.CreateInstance(FMODEvents.instance.playerBox);
     }
 
     // Update is called once per frame
@@ -68,6 +72,15 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Player_Walk>().enabled = true;
         StartCoroutine(EnableJump());
     }
+
+
+
+    public EventInstance GetFootsteps()
+    { 
+        return player.GetComponent<Player_Walk>().playerFootsteps;
+        // StartCoroutine(EnableJump());
+    }
+
 
     private IEnumerator EnableJump()
     {
@@ -137,6 +150,7 @@ public class GameManager : MonoBehaviour
     {
         DisablePlayerMovementInput();
         PauseGame();
+        Box.start();
         if (Application.isMobilePlatform)
         {
             Debug.Log("mobile!");
@@ -174,7 +188,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Current happiness is at " + GetHappiness());
         }
         deliveryItem.decrementCount();
-
+        Box.start();
         OnGameStateChanged(GameState.Running);
     }
 

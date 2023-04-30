@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class HouseObject : MonoBehaviour
 {
@@ -12,6 +14,18 @@ public class HouseObject : MonoBehaviour
     public DeliveryItem item;
     private TextMeshPro mText;
     private SpriteRenderer personSprite;
+
+    [SerializeField] private AudioManager audioManager;
+    private EventInstance Footsteps;
+    private EventInstance Brakes;
+    
+
+    private void Start() {
+        Footsteps = gameManager.GetFootsteps();
+        Brakes = AudioManager.instance.CreateInstance(FMODEvents.instance.playerBrakes);
+    }
+
+
     private void Awake()
     {
         item = new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1);
@@ -52,6 +66,8 @@ public class HouseObject : MonoBehaviour
 
     private IEnumerator BrakeAtHouse()
     {
+        Footsteps.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        Brakes.start();
         gameManager.DisablePlayerMovementInput(); 
         // play brake sound here?
         yield return new WaitForSecondsRealtime(1f);
