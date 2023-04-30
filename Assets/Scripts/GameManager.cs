@@ -14,6 +14,7 @@ public enum GameState
     Delivery,
     Win,
     Lose,
+    SecretWin
 }
 
 public class GameManager : MonoBehaviour
@@ -23,6 +24,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject deliveryPanel;
     [SerializeField] GameObject hintPanel;
     [SerializeField] AudioManager audioManager;
+    [SerializeField] GameObject timerCounter;
+    public TextMeshProUGUI helpText;
+    private Timer timer;
+
     public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
@@ -30,7 +35,8 @@ public class GameManager : MonoBehaviour
     public List<DeliveryItem> inventory = new();
     private EventSystem EVRef;
     private EventInstance Box;
-
+    private TextMeshProUGUI counterText;
+    private bool pickedAnswer = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +44,43 @@ public class GameManager : MonoBehaviour
         EVRef = EventSystem.current; // get the current event system
         OnGameStateChanged(GameState.Start);
         Box = AudioManager.instance.CreateInstance(FMODEvents.instance.playerBox);
+        counterText = timerCounter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+    }
+
+    private void OnEnable()
+    {
+        timer = new GameObject().AddComponent<Timer>();
+        timer.OnZero += ifTimerOutOfTime;
+        timer.UpdateGUI += UpdateTimerText;
+    }
+
+    private void OnDisable()
+    {
+        timer.OnZero -= ifTimerOutOfTime;
+        timer.UpdateGUI -= UpdateTimerText;
+    }
+
+    void UpdateTimerText(string time) {
+        counterText.SetText(time);
+    }
+
+    void ifTimerOutOfTime()
+    {
+        timer.EndTimer(false);
+        timerCounter.SetActive(false);
+        int scoreToAdd = 0;
+        pickedAnswer = true;
+        deliveryPanel.SetActive(false);
+        hintPanel.SetActive(false);
+        if (currentHouse != null)
+        {
+                Debug.Log("wrong item.......");
+                scoreToAdd = -200;
+                StartCoroutine(currentHouse.SetTemporaryText(":("));
+            }
+        AddScore(scoreToAdd);
+        Box.start();
+        OnGameStateChanged(GameState.Running);
     }
 
     // Update is called once per frame
@@ -121,6 +164,11 @@ public class GameManager : MonoBehaviour
                 HandleWin();
                 Debug.Log($"switched game state to win");
                 break;
+            case GameState.SecretWin:
+                //TODO: Handle win
+                HandleSecretWin();
+                Debug.Log($"switched game state to win");
+                break;
             default:
                 Debug.Log("Unknown state passed to state manager");
                 break;
@@ -143,11 +191,13 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("mobile!");
             MobileUI.SetActive(true);
+            helpText.text = "Move by tapping either side of your screen. Go make those deliveries!";
         }
     }
 
     void HandleDelivery()
     {
+        pickedAnswer = false;
         DisablePlayerMovementInput();
         PauseGame();
         Box.start();
@@ -162,11 +212,16 @@ public class GameManager : MonoBehaviour
         hintPanel.SetActive(true);
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
+        timerCounter.SetActive(true);
+        timer.StartTimer(5f);
     }
 
     public void HandOverItem(DeliveryItem deliveryItem)
     {
+        timer.EndTimer(false);
+        timerCounter.SetActive(false);
         int scoreToAdd;
+        pickedAnswer = true;
         Debug.Log("selected" + deliveryItem.GetName());
         deliveryPanel.SetActive(false);
         hintPanel.SetActive(false);
@@ -211,6 +266,14 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(DelaySceneLoad(2, "BadEnd"));
         }
+    }
+
+    void HandleSecretWin()
+    {
+        DisablePlayerMovementInput();
+        PlayerPrefs.SetInt("Happiness", _currentHappiness);
+        //SceneManager.LoadScene(5);
+            StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
     }
 
     IEnumerator DelaySceneLoad(float delay, string scene)
