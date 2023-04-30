@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
@@ -9,9 +10,13 @@ public class OptionsMenu : MonoBehaviour
     public Slider sfxSlider;
     public Slider musicSlider;
     public Toggle fullscreenToggle;
+    public Button backButton;
+    private PlayerControls playerControls;
+    private InputAction settingsBack;
     [SerializeField] GameObject resolutionOption;
     private void Start()
     {
+        playerControls = new PlayerControls();
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             resolutionOption.SetActive(false);
@@ -39,6 +44,11 @@ public class OptionsMenu : MonoBehaviour
         {
             fullscreenToggle.isOn = true;
         }
+
+        settingsBack = playerControls.Menu.MenuBack;
+        settingsBack.Enable();
+        settingsBack.started += OnBack;
+
     }
     public void SetSFXVolume (float volume)
     {
@@ -51,6 +61,10 @@ public class OptionsMenu : MonoBehaviour
         //SetMusicVolume(volume);
     }
 
+    private void OnBack(InputAction.CallbackContext context)
+    {
+        backButton.onClick.Invoke();
+    }
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;

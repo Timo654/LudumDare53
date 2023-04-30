@@ -10,19 +10,15 @@ public class DeliveryController : MonoBehaviour
 
     public void UpdateItems()
     {
+        gameManager.inventory.RemoveAll(item => item.getIsEmpty());
         for (var i = 0; i < deliveryItemPanel.childCount; i++)
         {
             if (gameManager.inventory.Count <= i)
-            {
-                break;
-            }
-            if (gameManager.inventory[i].getIsEmpty())
             {
                 deliveryItemPanel.GetChild(i).gameObject.SetActive(false);
                 continue;
             }
             Debug.Log(gameManager.inventory[i].GetName());
-
             deliveryItemPanel.GetChild(i);
             deliveryItemPanel.GetChild(i).GetChild(0).GetComponent<Image>().sprite = gameManager.inventory[i].GetArtwork();
             deliveryItemPanel.GetChild(i).GetChild(0).GetComponent<Image>().color = Color.white;

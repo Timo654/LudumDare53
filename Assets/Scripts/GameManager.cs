@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject MobileUI; // TODO
     [SerializeField] GameObject deliveryPanel;
     [SerializeField] GameObject hintPanel;
+    [SerializeField] AudioManager audioManager;
     public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
@@ -41,19 +41,38 @@ public class GameManager : MonoBehaviour
     {
     }
 
+    public void ShuffleInventory()
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            DeliveryItem temp = inventory[i];
+            int randomIndex = Random.Range(i, inventory.Count);
+            inventory[i] = inventory[randomIndex];
+            inventory[randomIndex] = temp;
+        }
+    }
+
     public void AddToInventory(DeliveryItem item)
     {
         inventory.Add(item);
     }
 
-    public void disablePlayerMovementInput()
+    public void DisablePlayerMovementInput()
     {
         player.GetComponent<Player_Walk>().enabled = false;
+        player.GetComponent<Player_Jump>().enabled = false;
     }
 
-    public void enablePlayerMovementInput()
+    public void EnablePlayerMovementInput()
     {
         player.GetComponent<Player_Walk>().enabled = true;
+        StartCoroutine(EnableJump());
+    }
+
+    private IEnumerator EnableJump()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        player.GetComponent<Player_Jump>().enabled = true;
     }
 
     public void OnGameStateChanged(GameState newState)
@@ -97,6 +116,7 @@ public class GameManager : MonoBehaviour
 
     void HandleStart()
     {
+        audioManager.InitializeMusic(FMODEvents.instance.mainmusic);
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
         OnGameStateChanged(GameState.Running);
@@ -104,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     void HandleRunning()
     {
-        enablePlayerMovementInput();
+        EnablePlayerMovementInput();
         UnpauseGame();
         if (Application.isMobilePlatform)
         {
@@ -115,6 +135,7 @@ public class GameManager : MonoBehaviour
 
     void HandleDelivery()
     {
+        DisablePlayerMovementInput();
         PauseGame();
         if (Application.isMobilePlatform)
         {
@@ -127,7 +148,6 @@ public class GameManager : MonoBehaviour
         hintPanel.SetActive(true);
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
-        disablePlayerMovementInput();
     }
 
     public void HandOverItem(DeliveryItem deliveryItem)
@@ -142,13 +162,13 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("got the correct item!");
                 scoreToAdd = 500;
-                StartCoroutine(currentHouse.SetTemporaryText("good"));
+                StartCoroutine(currentHouse.SetTemporaryText(":)"));
             }
             else
             {
                 Debug.Log("wrong item.......");
                 scoreToAdd = -200;
-                StartCoroutine(currentHouse.SetTemporaryText("bad..."));
+                StartCoroutine(currentHouse.SetTemporaryText(":("));
             }
             AddScore(scoreToAdd);
             Debug.Log("Current happiness is at " + GetHappiness());
@@ -168,7 +188,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         //SceneManager.LoadScene(5);
-        if (_currentHappiness > 3000)
+        if (_currentHappiness > 2900)
         {
             StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
         }
