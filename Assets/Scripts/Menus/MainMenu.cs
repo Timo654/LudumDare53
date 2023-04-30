@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMOD.Studio;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject exitButton; // to disable in webgl
+    [SerializeField] private AudioManager audioManager;
+
+    private EventInstance musicEventInstance;
 
     void Start()
     {
@@ -16,16 +20,21 @@ public class MainMenu : MonoBehaviour
         {
             exitButton.SetActive(false);
         }
+        musicEventInstance = AudioManager.instance.CreateInstance(FMODEvents.instance.menumusic);
+        musicEventInstance.start();
     }
 
     public void PlayGame ()
     {
         //AudioManager.FadeMusicOut(1);
+        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         StartCoroutine(DelaySceneLoad(2, "Delivery"));
     }
     public void OpenCredits ()
     {
         //AudioManager.FadeMusicOut(1);
+        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicEventInstance.release();
         StartCoroutine(DelaySceneLoad(2, "Credits"));
     }
     IEnumerator DelaySceneLoad(float delay, string scene)

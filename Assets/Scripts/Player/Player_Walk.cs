@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMOD.Studio;
 public class Player_Walk : MonoBehaviour
 {
     [Header("Components")]
@@ -32,6 +33,14 @@ public class Player_Walk : MonoBehaviour
     [Header("Current State")]
     public bool onGround;
     public bool pressingKey;
+
+
+    // Audio
+    private EventInstance playerFootsteps;
+    
+    private void Start() {
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
+    }
 
     // Start is called before the first frame update
     private void Awake()
@@ -125,11 +134,16 @@ public class Player_Walk : MonoBehaviour
         // TODO - add audio here
         if (velocity.x != 0)
         {
-            
+            // get the playback state
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState (out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED)) {
+                playerFootsteps.start();
+            }
         }
         else
         {
-          
+           playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
         //Update the Rigidbody with this new velocity
         body.velocity = velocity;
