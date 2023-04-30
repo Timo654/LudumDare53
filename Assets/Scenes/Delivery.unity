@@ -1564,6 +1564,7 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: c7efc200ac5820a4498ce32708a12b18, type: 2}
   housePrefab: {fileID: 8438299666576120179, guid: 5794770c6acdd424c81d59aa79e4d0a0, type: 3}
   treePrefab: {fileID: 140964522321585310, guid: 329ac407b2740eb4bb0aa6fb46be36e2, type: 3}
+  endTrigger: {fileID: 1244926747}
 --- !u!224 &536056363 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2009165667065386119, guid: a07c4eac9529440438f4642fc7f7687c, type: 3}
@@ -2970,8 +2971,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 21300000, guid: 574f0cbfd99509043b3faa827e443d0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2989,14 +2990,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244926747}
-  m_LocalRotation: {x: -0, y: -0, z: -0.18431215, w: 0.9828678}
-  m_LocalPosition: {x: 184.6, y: -8.7, z: 0}
-  m_LocalScale: {x: 37.42005, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.9, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -21.242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1244926752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3010,18 +3011,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.08601284, y: 0.21894288}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 7.5, y: 7.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.1773167, y: 4.940972}
   m_EdgeRadius: 0
 --- !u!1 &1265776455
 GameObject:
@@ -3645,7 +3646,7 @@ Transform:
   m_GameObject: {fileID: 1453567052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.241, y: -0.6695, z: 0}
-  m_LocalScale: {x: 300, y: 0.4194958, z: 1}
+  m_LocalScale: {x: 1000, y: 0.4194958, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

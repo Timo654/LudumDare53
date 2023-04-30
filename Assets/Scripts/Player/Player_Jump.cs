@@ -133,7 +133,6 @@ public class Player_Jump : MonoBehaviour
     {
         //Get velocity from Rigidbody 
         velocity = body.velocity;
-        playerAnimator.SetBool("Jumping", desiredJump);
         //Keep trying to do a jump, for as long as desiredJump is true
         if (desiredJump)
         {
