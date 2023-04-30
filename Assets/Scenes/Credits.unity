@@ -373,16 +373,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Timo Jairus
-
-
-    Ellis Donnik
-
-
-    Timur Nizamov
-
-
-'
+  m_text: "Timo Jairus\n\n\n\n\n\n\nEllis Donnik\n\n\n\n\n\n\nTimur Nizamov\n\n\n\n\n\nketrub\njason098\n\n\n\n\nUT
+    M\xE4nguj\xE4mm 2023\n\n\nDid you find all the endings?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
   m_sharedMaterial: {fileID: -4870790103433255552, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
@@ -445,7 +437,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -1.0279541, w: 0}
+  m_margin: {x: 0, y: 0, z: 10.91748, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -610,10 +602,40 @@ MonoBehaviour:
   m_text: 'Programming
 
 
+
+
+
+
+
     Art
 
 
-    Sound'
+
+
+
+
+
+    Sound
+
+
+
+
+
+
+    Testers
+
+
+
+
+
+
+    Made
+    for
+
+
+
+
+    Thanks for playing!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
   m_sharedMaterial: {fileID: -4870790103433255552, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
@@ -763,6 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2a7f2cf533c534fb3467b4d2a3a2e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
 --- !u!1 &1892271247
 GameObject:
   m_ObjectHideFlags: 0
