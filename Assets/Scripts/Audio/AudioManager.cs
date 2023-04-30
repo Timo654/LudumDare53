@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
     }
 
     private void Start() {
-        InitializeMusic(FMODEvents.instance.mainmusic);
+        
     }
 
     public void InitializeMusic(EventReference musicEventReference) {

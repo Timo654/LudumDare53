@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject MobileUI; // TODO
     [SerializeField] GameObject deliveryPanel;
     [SerializeField] GameObject hintPanel;
+    [SerializeField] AudioManager audioManager;
     public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
 
     void HandleStart()
     {
+        audioManager.InitializeMusic(FMODEvents.instance.mainmusic);
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
         OnGameStateChanged(GameState.Running);

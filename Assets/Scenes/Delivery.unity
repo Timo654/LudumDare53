@@ -1615,6 +1615,7 @@ MonoBehaviour:
   MobileUI: {fileID: 2005541621}
   deliveryPanel: {fileID: 1952169754}
   hintPanel: {fileID: 1212241646}
+  audioManager: {fileID: 335751183}
   currentHouse: {fileID: 0}
 --- !u!114 &515775129
 MonoBehaviour:
