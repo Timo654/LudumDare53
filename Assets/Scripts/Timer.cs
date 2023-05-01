@@ -37,8 +37,6 @@ public class Timer : MonoBehaviour
         if (!counting) return;
         
         time -= Time.deltaTime;
-        Debug.Log(Time.deltaTime);
-        Debug.Log("please " + time);
         if (time <= 0f) EndTimer(true);
         UpdateGUI.Invoke(GetTime());
     }

@@ -20,8 +20,6 @@ public class HouseController : MonoBehaviour
         for (var i= 0; i < houseCount; i++)
         {
             x = prev_x + Random.Range(20, 40);
-            Debug.Log(x);
-            Debug.Log(x - prev_x);
             tree_loc = Random.Range(prev_x + 4f, x - 4f);
 
             // could be better
@@ -41,7 +39,6 @@ public class HouseController : MonoBehaviour
             GameObject obj = Instantiate(housePrefab, new Vector3(x, 1.85f, 0), Quaternion.identity);
             HouseObject house = obj.GetComponent<HouseObject>();
             house.gameManager = gameManager;
-            Debug.Log(house.item);
             gameManager.AddToInventory(house.item);
         }
         endTrigger.transform.position = new Vector3(Random.Range(prev_x + 20f, prev_x + 60f), 0.4f, 0);

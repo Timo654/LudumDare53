@@ -9,7 +9,6 @@ public class Person
     {
         _artwork = artwork;
         _desiredItem = desiredItem;
-        Debug.Log(desiredItem.GetRandomLine());
     }
 
     public Sprite GetArtwork()
