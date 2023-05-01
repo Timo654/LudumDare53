@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     private EventSystem EVRef;
     private EventInstance Box;
     private TextMeshProUGUI counterText;
-    private bool pickedAnswer = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,13 +49,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         timer = new GameObject().AddComponent<Timer>();
-        timer.OnZero += ifTimerOutOfTime;
+        timer.OnZero += RanOutOfTime;
         timer.UpdateGUI += UpdateTimerText;
     }
 
     private void OnDisable()
     {
-        timer.OnZero -= ifTimerOutOfTime;
+        timer.OnZero -= RanOutOfTime;
         timer.UpdateGUI -= UpdateTimerText;
     }
 
@@ -64,12 +63,11 @@ public class GameManager : MonoBehaviour
         counterText.SetText(time);
     }
 
-    void ifTimerOutOfTime()
+    void RanOutOfTime()
     {
         timer.EndTimer(false);
         timerCounter.SetActive(false);
         int scoreToAdd = 0;
-        pickedAnswer = true;
         deliveryPanel.SetActive(false);
         hintPanel.SetActive(false);
         if (currentHouse != null)
@@ -80,12 +78,8 @@ public class GameManager : MonoBehaviour
             }
         AddScore(scoreToAdd);
         Box.start();
+        EnablePlayerMovementInput();
         OnGameStateChanged(GameState.Running);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void ShuffleInventory()
@@ -106,14 +100,12 @@ public class GameManager : MonoBehaviour
 
     public void DisablePlayerMovementInput()
     {
-        player.GetComponent<Player_Walk>().enabled = false;
-        player.GetComponent<Player_Jump>().enabled = false;
+        player.GetComponent<Player_Walk>().DisableBinds();
     }
 
     public void EnablePlayerMovementInput()
     {
-        player.GetComponent<Player_Walk>().enabled = true;
-        StartCoroutine(EnableJump());
+        player.GetComponent<Player_Walk>().EnableBinds();
     }
 
 
@@ -121,15 +113,8 @@ public class GameManager : MonoBehaviour
     public EventInstance GetFootsteps()
     { 
         return player.GetComponent<Player_Walk>().playerFootsteps;
-        // StartCoroutine(EnableJump());
     }
 
-
-    private IEnumerator EnableJump()
-    {
-        yield return new WaitForSecondsRealtime(1f);
-        player.GetComponent<Player_Jump>().enabled = true;
-    }
 
     public void OnGameStateChanged(GameState newState)
     {
@@ -153,11 +138,6 @@ public class GameManager : MonoBehaviour
             case GameState.Delivery:
                 Debug.Log($"switched game state to delivery");
                 HandleDelivery();
-                break;
-            case GameState.Lose:
-                //TODO: Handle loss
-                HandleLoss();
-                Debug.Log($"switched game state to loss");
                 break;
             case GameState.Win:
                 //TODO: Handle win
@@ -185,7 +165,6 @@ public class GameManager : MonoBehaviour
 
     void HandleRunning()
     {
-        EnablePlayerMovementInput();
         UnpauseGame();
         if (Application.isMobilePlatform)
         {
@@ -197,9 +176,8 @@ public class GameManager : MonoBehaviour
 
     void HandleDelivery()
     {
-        pickedAnswer = false;
         DisablePlayerMovementInput();
-        PauseGame();
+        //PauseGame();
         Box.start();
         if (Application.isMobilePlatform)
         {
@@ -221,7 +199,6 @@ public class GameManager : MonoBehaviour
         timer.EndTimer(false);
         timerCounter.SetActive(false);
         int scoreToAdd;
-        pickedAnswer = true;
         Debug.Log("selected" + deliveryItem.GetName());
         deliveryPanel.SetActive(false);
         hintPanel.SetActive(false);
@@ -244,13 +221,8 @@ public class GameManager : MonoBehaviour
         }
         deliveryItem.decrementCount();
         Box.start();
+        EnablePlayerMovementInput();
         OnGameStateChanged(GameState.Running);
-    }
-
-    void HandleLoss()
-    {
-        Time.timeScale = 1.0f;
-        StartCoroutine(DelaySceneLoad(2, "BadEnd"));
     }
 
     void HandleWin()

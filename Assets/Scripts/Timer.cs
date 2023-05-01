@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
 
     public void StartTimer(float start)
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         Debug.Log("started timer");
         time = start;
         counting = true;

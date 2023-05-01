@@ -65,6 +65,16 @@ public class Player_Walk : MonoBehaviour
         jump.Disable();
     }
 
+    public void DisableBinds()
+    {
+        OnDisable();
+    }
+
+    public void EnableBinds()
+    {
+        OnEnable();
+    }
+
     public void OnMovement(InputAction.CallbackContext context)
     {
         //This is called when you input a direction on a valid input type, such as arrow keys or analogue stick
