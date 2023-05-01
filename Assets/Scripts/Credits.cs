@@ -12,7 +12,6 @@ public class Credits : MonoBehaviour
     private InputAction escape;
     private InputAction interact;
 
-    [SerializeField] private AudioManager audioManager;
     private EventInstance creditMusicEventInstance;
 
     private void Awake()
@@ -42,8 +41,7 @@ public class Credits : MonoBehaviour
 
     private void Start()
     {
-        creditMusicEventInstance = AudioManager.instance.CreateInstance(FMODEvents.instance.creditmusic);
-        creditMusicEventInstance.start();
+        AudioManager._instance.InitializeMusic(FMODEvents.instance.creditmusic);
     }
 
     // Start is called before the first frame update
@@ -54,8 +52,7 @@ public class Credits : MonoBehaviour
 
     IEnumerator CreditsEnd()
     {
-        creditMusicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        creditMusicEventInstance.release();
+        AudioManager._instance.FadeOutMusic();
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene("MainMenu");
     }

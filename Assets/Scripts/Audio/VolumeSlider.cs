@@ -19,7 +19,7 @@ public class VolumeSlider : MonoBehaviour
 
     private void Awake() {
         volumeSlider = this.GetComponentInChildren<Slider>();
-        audioManager = AudioManager.instance;
+        audioManager = AudioManager._instance;
     }
 
     private void Update() {

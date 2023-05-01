@@ -7,7 +7,6 @@ using FMOD.Studio;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject exitButton; // to disable in webgl
-    [SerializeField] private AudioManager audioManager;
 
     private EventInstance musicEventInstance;
 
@@ -20,21 +19,19 @@ public class MainMenu : MonoBehaviour
         {
             exitButton.SetActive(false);
         }
-        musicEventInstance = AudioManager.instance.CreateInstance(FMODEvents.instance.menumusic);
-        musicEventInstance.start();
+        AudioManager._instance.InitializeMusic(FMODEvents.instance.menumusic);
     }
 
     public void PlayGame ()
     {
         //AudioManager.FadeMusicOut(1);
-        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        AudioManager._instance.FadeOutMusic();
         StartCoroutine(DelaySceneLoad(2, "Delivery"));
     }
     public void OpenCredits ()
     {
         //AudioManager.FadeMusicOut(1);
-        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        musicEventInstance.release();
+        AudioManager._instance.FadeOutMusic();
         StartCoroutine(DelaySceneLoad(2, "Credits"));
     }
     IEnumerator DelaySceneLoad(float delay, string scene)

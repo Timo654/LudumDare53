@@ -22,7 +22,7 @@ public class HouseObject : MonoBehaviour
 
     private void Start() {
         Footsteps = gameManager.GetFootsteps();
-        Brakes = AudioManager.instance.CreateInstance(FMODEvents.instance.playerBrakes);
+        Brakes = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
     }
 
 

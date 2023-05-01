@@ -39,7 +39,7 @@ public class Player_Walk : MonoBehaviour
     public EventInstance playerFootsteps;
     
     private void Start() {
-        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
+        playerFootsteps = AudioManager._instance.CreateInstance(FMODEvents.instance.playerFootsteps);
     }
 
     // Start is called before the first frame update
@@ -142,7 +142,7 @@ public class Player_Walk : MonoBehaviour
         //Move our velocity towards the desired velocity, at the rate of the number calculated above
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
         // TODO - add audio here
-        if (velocity.x != 0)
+        if (velocity.x != 0 & pressingKey)
         {
             // get the playback state
             PLAYBACK_STATE playbackState;

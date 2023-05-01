@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject MobileUI; // TODO
     [SerializeField] GameObject deliveryPanel;
     [SerializeField] GameObject hintPanel;
-    [SerializeField] AudioManager audioManager;
     [SerializeField] GameObject timerCounter;
     public TextMeshPro helpText;
     private Timer timer;
@@ -42,7 +41,7 @@ public class GameManager : MonoBehaviour
         deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
         OnGameStateChanged(GameState.Start);
-        Box = AudioManager.instance.CreateInstance(FMODEvents.instance.playerBox);
+        Box = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBox);
         counterText = timerCounter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
@@ -157,7 +156,7 @@ public class GameManager : MonoBehaviour
 
     void HandleStart()
     {
-        audioManager.InitializeMusic(FMODEvents.instance.mainmusic);
+        AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
         OnGameStateChanged(GameState.Running);
@@ -229,7 +228,6 @@ public class GameManager : MonoBehaviour
     {
         DisablePlayerMovementInput();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
-        //SceneManager.LoadScene(5);
         if (_currentHappiness > 2900)
         {
             StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
@@ -244,13 +242,13 @@ public class GameManager : MonoBehaviour
     {
         DisablePlayerMovementInput();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
-        //SceneManager.LoadScene(5);
-            StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
+        StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
     }
 
     IEnumerator DelaySceneLoad(float delay, string scene)
     {
         yield return new WaitForSeconds(delay);
+        AudioManager._instance.FadeOutMusic();
         SceneManager.LoadScene(scene);
     }
 

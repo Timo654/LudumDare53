@@ -5,7 +5,7 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
-    [field: Header("Player SFX")]
+    [field: Header("SFX")]
     [field: SerializeField] public EventReference playerFootsteps {get; private set;}
     [field: SerializeField] public EventReference playerBrakes {get; private set;}
     [field: SerializeField] public EventReference playerBox {get; private set;}
@@ -22,7 +22,7 @@ public class FMODEvents : MonoBehaviour
 
     private void Awake() {
         if (instance != null) {
-            Debug.LogError("Found more than one FMOD Events instance in the scene.");
+            return;
         }
         instance = this;
     }

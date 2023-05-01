@@ -98,6 +98,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void LoadMenu()
     {
+        AudioManager._instance.FadeOutMusic();
         Time.timeScale = 1f;
         GameIsPaused = !GameIsPaused;
         SceneManager.LoadScene("MainMenu");

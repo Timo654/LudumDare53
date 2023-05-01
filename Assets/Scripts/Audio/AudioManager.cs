@@ -22,23 +22,63 @@ public class AudioManager : MonoBehaviour
 
     private List<EventInstance> eventInstances;
 
-    public static AudioManager instance { get; private set; }
+    public static AudioManager _instance { get; private set; }
     // public static AudioManager instance;
     private EventInstance musicEventInstance;
 
-    private void Awake() {
-        if (instance != null) {
-            Debug.LogError("Found more than one Audio Manager in the scene");
+
+    // public access for the Singleton
+    // and lazy instantiation if not exists
+    public static AudioManager Instance
+    {
+        get
+        {
+            // if exists directly return
+            if (_instance) return _instance;
+
+            // otherwise search it in the scene
+            _instance = FindObjectOfType<AudioManager>();
+
+            // found it?
+            if (_instance) return _instance;
+
+            // otherwise create and initialize it
+            CreateInstance();
+
+            return _instance;
         }
-        instance = this;
+    }
 
-        eventInstances = new List<EventInstance>();
+    [RuntimeInitializeOnLoadMethod]
+    private static void CreateInstance()
+    {
+        // skip if already exists
+        if (_instance) return;
 
-        musicBus = RuntimeManager.GetBus("bus:/Music");
-        sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        InitializeInstance(new GameObject(nameof(AudioManager)).AddComponent<AudioManager>());
+    }
 
-        SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
-        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
+    private static void InitializeInstance(AudioManager instance)
+    {
+        _instance = instance;
+        DontDestroyOnLoad(_instance.gameObject);
+        _instance.eventInstances = new List<EventInstance>();
+
+        _instance.musicBus = RuntimeManager.GetBus("bus:/Music");
+        _instance.sfxBus = RuntimeManager.GetBus("bus:/SFX");
+
+        _instance.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+        _instance.musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+
+    }
+
+    private void Awake() {
+        if (_instance && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        InitializeInstance(this);
     }
 
     public EventInstance CreateInstance(EventReference eventReference) {
@@ -62,13 +102,23 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    public void FadeOutMusic()
+    {
+        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicEventInstance.release();
+
+    }
+
     private void CleanUp() {
-        foreach (EventInstance eventInstance in eventInstances)
+        if (eventInstances != null)
         {
-            eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            eventInstance.release();
-            
+            foreach (EventInstance eventInstance in eventInstances)
+            {
+                eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                eventInstance.release();
+            }
         }
+        
     }
 
     private void OnDestroy() {
