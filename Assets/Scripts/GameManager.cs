@@ -168,9 +168,10 @@ public class GameManager : MonoBehaviour
         if (Application.isMobilePlatform)
         {
             Debug.Log("mobile!");
-            MobileUI.SetActive(true);
+            
             helpText.text = "Move by tapping either side of your screen. Go make those deliveries!";
         }
+        MobileUI.SetActive(true);
     }
 
     void HandleDelivery()
@@ -178,11 +179,11 @@ public class GameManager : MonoBehaviour
         DisablePlayerMovementInput();
         //PauseGame();
         Box.start();
-        if (Application.isMobilePlatform)
-        {
-            Debug.Log("mobile!");
+        //if (Application.isMobilePlatform)
+        //{
+        //    Debug.Log("mobile!");
             MobileUI.SetActive(false);
-        }
+        //}
         deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
         hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();

@@ -32,7 +32,7 @@ public class HouseController : MonoBehaviour
             }
             else
             {
-                tree = Instantiate(treePrefab, new Vector3(tree_loc, 2.75f, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
+                tree = Instantiate(treePrefab, new Vector3(tree_loc, 2.65f, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
                 tree.sortingOrder = 4;
             }
             tree.sprite = gameData.treeSprites[Random.Range(0, gameData.treeSprites.Length)];
