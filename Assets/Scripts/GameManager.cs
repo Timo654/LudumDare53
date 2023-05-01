@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject timerCounter;
     public TextMeshPro helpText;
     private Timer timer;
-
+    private EventInstance Brakes;
     public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Brakes = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
         deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
         OnGameStateChanged(GameState.Start);
@@ -228,6 +229,7 @@ public class GameManager : MonoBehaviour
     void HandleWin()
     {
         DisablePlayerMovementInput();
+        Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
         {
@@ -242,6 +244,7 @@ public class GameManager : MonoBehaviour
     void HandleSecretWin()
     {
         DisablePlayerMovementInput();
+        Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
     }

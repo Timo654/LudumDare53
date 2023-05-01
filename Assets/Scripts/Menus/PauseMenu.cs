@@ -76,11 +76,11 @@ public class PauseMenu : MonoBehaviour
         {
             exitButton.SetActive(false);
         }
-        if (Application.isMobilePlatform)
-        {
-            Debug.Log("mobile!");
+        //if (Application.isMobilePlatform)
+        //{
+            //Debug.Log("mobile!");
             MobileUI.SetActive(false);
-        }
+        //}
         EVRef.SetSelectedGameObject(selectedUIElement);   // set current selected button
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -88,11 +88,11 @@ public class PauseMenu : MonoBehaviour
 
     public void DeactivateMenu()
     {
-        if (Application.isMobilePlatform)
-        {
-            Debug.Log("mobile!");
+        //if (Application.isMobilePlatform)
+        //{
+            //Debug.Log("mobile!");
             MobileUI.SetActive(true);
-        }
+        //}
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
     }
