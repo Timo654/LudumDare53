@@ -69,7 +69,8 @@ public class HouseObject : MonoBehaviour
     {
         Footsteps.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         Brakes.start();
-        gameManager.DisablePlayerMovementInput(); 
+        gameManager.DisablePlayerMovementInput();
+        gameManager.CreateDust();
         // play brake sound here?
         yield return new WaitForSecondsRealtime(1f);
         gameManager.OnGameStateChanged(GameState.Delivery);

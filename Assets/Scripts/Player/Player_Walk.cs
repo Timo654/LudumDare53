@@ -34,11 +34,17 @@ public class Player_Walk : MonoBehaviour
     public bool onGround;
     public bool pressingKey;
 
+    public ParticleSystem dust;
     // Audio
     public EventInstance playerFootsteps;
     
     private void Start() {
         playerFootsteps = AudioManager._instance.CreateInstance(FMODEvents.instance.playerFootsteps);
+    }
+
+    public void CreateDust()
+    {
+        dust.Play();
     }
 
     // Start is called before the first frame update
@@ -88,7 +94,7 @@ public class Player_Walk : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //Used to flip the character's sprite when she changes direction
+        //Used to flip the character's sprite when they change direction
         //Also tells us that we are currently pressing a direction button
         if (directionX != 0)
         {

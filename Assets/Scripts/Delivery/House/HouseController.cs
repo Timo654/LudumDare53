@@ -41,7 +41,10 @@ public class HouseController : MonoBehaviour
             house.gameManager = gameManager;
             gameManager.AddToInventory(house.item);
         }
-        endTrigger.transform.position = new Vector3(Random.Range(prev_x + 20f, prev_x + 60f), 0.4f, 0);
+
+        float endLocation = Random.Range(prev_x + 20f, prev_x + 60f);
+        Instantiate(treePrefab, new Vector3(Random.Range(prev_x + 10f, endLocation - 10f), Random.Range(-3.85f, -2f), 0), Quaternion.identity).GetComponent<SpriteRenderer>(); // random final tree
+        endTrigger.transform.position = new Vector3(endLocation, 0.4f, 0);
         gameManager.AddToInventory(new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1)); // add a single extra item
         gameManager.ShuffleInventory();
     }

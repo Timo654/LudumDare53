@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private EventSystem EVRef;
     private EventInstance Box;
     private TextMeshProUGUI counterText;
+    private Player_Walk playerWalk;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged(GameState.Start);
         Box = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBox);
         counterText = timerCounter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        playerWalk = player.GetComponent<Player_Walk>();
     }
 
     private void OnEnable()
@@ -99,21 +101,25 @@ public class GameManager : MonoBehaviour
 
     public void DisablePlayerMovementInput()
     {
-        player.GetComponent<Player_Walk>().DisableBinds();
+        playerWalk.DisableBinds();
     }
 
     public void EnablePlayerMovementInput()
     {
-        player.GetComponent<Player_Walk>().EnableBinds();
+        playerWalk.EnableBinds();
     }
 
 
 
     public EventInstance GetFootsteps()
     { 
-        return player.GetComponent<Player_Walk>().playerFootsteps;
+        return playerWalk.playerFootsteps;
     }
 
+    public void CreateDust()
+    {
+        playerWalk.CreateDust();
+    }
 
     public void OnGameStateChanged(GameState newState)
     {
@@ -226,6 +232,7 @@ public class GameManager : MonoBehaviour
     void HandleWin()
     {
         DisablePlayerMovementInput();
+        CreateDust();
         Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
@@ -241,6 +248,7 @@ public class GameManager : MonoBehaviour
     void HandleSecretWin()
     {
         DisablePlayerMovementInput();
+        CreateDust();
         Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
