@@ -109,6 +109,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 7568295601717393233}
   onGround: 0
   pressingKey: 0
+  dust: {fileID: 0}
 --- !u!114 &-280203557608801400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +151,7 @@ MonoBehaviour:
   speedLimit: 20
   coyoteTime: 0
   jumpBuffer: 0
+  playerAnimator: {fileID: 0}
   jumpSpeed: 0
   gravMultiplier: 1
   canJumpAgain: 0

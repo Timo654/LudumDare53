@@ -47,13 +47,6 @@ public class Credits : MonoBehaviour
     // Start is called before the first frame update
     public void OnCreditsEnd()
     {
-        StartCoroutine(CreditsEnd());
-    }
-
-    IEnumerator CreditsEnd()
-    {
-        AudioManager._instance.FadeOutMusic();
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("MainMenu");
+        LevelChangerScript._instance.FadeToLevel("MainMenu");
     }
 }

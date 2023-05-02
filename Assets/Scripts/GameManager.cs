@@ -249,8 +249,7 @@ public class GameManager : MonoBehaviour
     IEnumerator DelaySceneLoad(float delay, string scene)
     {
         yield return new WaitForSeconds(delay);
-        AudioManager._instance.FadeOutMusic();
-        SceneManager.LoadScene(scene);
+        LevelChangerScript._instance.FadeToLevel(scene);
     }
 
     public void AddScore(int scoreToAdd)

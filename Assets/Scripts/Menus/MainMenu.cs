@@ -24,22 +24,11 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame ()
     {
-        //AudioManager.FadeMusicOut(1);
-        AudioManager._instance.FadeOutMusic();
-        StartCoroutine(DelaySceneLoad(2, "Delivery"));
+        LevelChangerScript._instance.FadeToLevel("Delivery");
     }
     public void OpenCredits ()
     {
-        //AudioManager.FadeMusicOut(1);
-        AudioManager._instance.FadeOutMusic();
-        StartCoroutine(DelaySceneLoad(2, "Credits"));
-    }
-    IEnumerator DelaySceneLoad(float delay, string scene)
-    {
-        //AudioManager.FadeMusicOut(delay);
-        //yield return new WaitForSeconds(delay); TODO
-        yield return new WaitForSeconds(0.1f);
-        SceneManager.LoadScene(scene);
+        LevelChangerScript._instance.FadeToLevel("Credits");
     }
 
     public void QuitGame()

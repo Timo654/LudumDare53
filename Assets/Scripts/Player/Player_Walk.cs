@@ -34,7 +34,6 @@ public class Player_Walk : MonoBehaviour
     public bool onGround;
     public bool pressingKey;
 
-
     // Audio
     public EventInstance playerFootsteps;
     
@@ -141,7 +140,7 @@ public class Player_Walk : MonoBehaviour
         }
         //Move our velocity towards the desired velocity, at the rate of the number calculated above
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
-        // TODO - add audio here
+
         if (velocity.x != 0 & pressingKey)
         {
             // get the playback state

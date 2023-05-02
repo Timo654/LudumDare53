@@ -13,6 +13,6 @@ public class EndingManager : MonoBehaviour
     IEnumerator Ending()
     {
         yield return new WaitForSecondsRealtime(5f);
-        SceneManager.LoadScene("Credits");
+        LevelChangerScript._instance.FadeToLevel("Credits");
     }
 }
