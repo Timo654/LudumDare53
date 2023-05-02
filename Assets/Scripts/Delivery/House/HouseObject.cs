@@ -57,11 +57,12 @@ public class HouseObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        BoxCollider2D p = gameObject.GetComponent<BoxCollider2D>();
-        p.enabled = false;
+        BoxCollider2D b = gameObject.GetComponent<BoxCollider2D>();
+        b.enabled = false;
         gameManager.currentHouse = this;
         StartCoroutine(BrakeAtHouse());
         Debug.Log("Got to a house.");
+        
     }
 
     private IEnumerator BrakeAtHouse()

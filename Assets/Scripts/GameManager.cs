@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
         timerCounter.SetActive(false);
         int scoreToAdd = 0;
         deliveryPanel.SetActive(false);
-        hintPanel.SetActive(false);
         if (currentHouse != null)
         {
                 Debug.Log("wrong item.......");
@@ -188,7 +187,6 @@ public class GameManager : MonoBehaviour
         deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
         hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();
-        hintPanel.SetActive(true);
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
         timerCounter.SetActive(true);
@@ -202,7 +200,6 @@ public class GameManager : MonoBehaviour
         int scoreToAdd;
         Debug.Log("selected" + deliveryItem.GetName());
         deliveryPanel.SetActive(false);
-        hintPanel.SetActive(false);
         if (currentHouse != null)
         {
             if (currentHouse.resident.GetDesiredItem().GetName() == deliveryItem.GetName())

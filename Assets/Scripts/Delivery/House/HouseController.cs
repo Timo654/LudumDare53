@@ -25,18 +25,18 @@ public class HouseController : MonoBehaviour
             // could be better
             if (Random.value > 0.5f)
             {
-                tree = Instantiate(treePrefab, new Vector3(tree_loc, 1.85f, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
+                tree = Instantiate(treePrefab, new Vector3(tree_loc, Random.Range(-3.85f, -2f), 0), Quaternion.identity).GetComponent<SpriteRenderer>();
                 tree.sortingOrder = 11;
             }
             else
             {
-                tree = Instantiate(treePrefab, new Vector3(tree_loc, 2.65f, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
+                tree = Instantiate(treePrefab, new Vector3(tree_loc, -1.4f, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
                 tree.sortingOrder = 4;
             }
             tree.sprite = gameData.treeSprites[Random.Range(0, gameData.treeSprites.Length)];
 
             prev_x = x;
-            GameObject obj = Instantiate(housePrefab, new Vector3(x, 1.85f, 0), Quaternion.identity);
+            GameObject obj = Instantiate(housePrefab, new Vector3(x, -1.91f, 0), Quaternion.identity);
             HouseObject house = obj.GetComponent<HouseObject>();
             house.gameManager = gameManager;
             gameManager.AddToInventory(house.item);
@@ -46,9 +46,4 @@ public class HouseController : MonoBehaviour
         gameManager.ShuffleInventory();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
