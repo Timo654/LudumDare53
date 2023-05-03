@@ -3733,7 +3733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _img: {fileID: 1389881056}
-  _x: 0
+  _x: 0.01
   _y: 0
 --- !u!114 &1389881056
 MonoBehaviour:

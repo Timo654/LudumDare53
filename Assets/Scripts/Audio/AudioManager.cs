@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -49,11 +50,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    [RuntimeInitializeOnLoadMethod]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void CreateInstance()
     {
         // skip if already exists
         if (_instance) return;
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "BankLoader") return;
 
         InitializeInstance(new GameObject(nameof(AudioManager)).AddComponent<AudioManager>());
     }
