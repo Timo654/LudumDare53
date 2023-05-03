@@ -14,6 +14,8 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference mainmusic { get; private set; }
     [field: SerializeField] public EventReference menumusic { get; private set; }
     [field: SerializeField] public EventReference creditmusic { get; private set; }
+    [field: SerializeField] public EventReference GoodEndingMusic { get; private set; }
+    [field: SerializeField] public EventReference BadEndingMusic { get; private set; }
 
     [field: Header("UI")]
     [field: SerializeField] public EventReference click { get; private set; }

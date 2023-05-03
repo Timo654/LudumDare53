@@ -246,6 +246,20 @@ MonoBehaviour:
       Data3: 851777421
       Data4: -1845820395
     Path: event:/Music/Credits
+  <GoodEndingMusic>k__BackingField:
+    Guid:
+      Data1: 633388441
+      Data2: 1128512174
+      Data3: 1734105276
+      Data4: -1424685326
+    Path: event:/Music/GoodEnding
+  <BadEndingMusic>k__BackingField:
+    Guid:
+      Data1: -1004656288
+      Data2: 1270246334
+      Data3: -33001043
+      Data4: -19926581
+    Path: event:/Music/BadEnding
   <click>k__BackingField:
     Guid:
       Data1: 688111017

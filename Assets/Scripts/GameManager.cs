@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public TextMeshPro helpText;
     private Timer timer;
     private EventInstance Brakes;
+    private EventInstance BadEnding;
+    private EventInstance GoodEnding;
     public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
         Box = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBox);
         counterText = timerCounter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         playerWalk = player.GetComponent<Player_Walk>();
+        BadEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.BadEndingMusic);
+        GoodEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.GoodEndingMusic);
     }
 
     private void OnEnable()
@@ -237,12 +241,26 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
         {
+            StartCoroutine(DelayedGoodEnding());
             StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
         }
         else
         {
+            StartCoroutine(DelayedBadEnding());
             StartCoroutine(DelaySceneLoad(2, "BadEnd"));
         }
+    }
+
+    IEnumerator DelayedGoodEnding()
+    {
+        yield return new WaitForSeconds(2.5f); // add a delay of 2 seconds
+        GoodEnding.start();
+    }
+
+    IEnumerator DelayedBadEnding()
+    {
+        yield return new WaitForSeconds(1.5f); // add a delay of 2 seconds
+        BadEnding.start();
     }
 
     void HandleSecretWin()
