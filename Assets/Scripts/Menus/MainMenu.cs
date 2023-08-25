@@ -12,9 +12,6 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        //SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 0.2f));
-        //SetSoundVolume(PlayerPrefs.GetFloat("SFXVolume", 0.5f));
-        // play music here
         if (Application.platform == RuntimePlatform.WebGLPlayer || Application.isMobilePlatform)
         {
             exitButton.SetActive(false);

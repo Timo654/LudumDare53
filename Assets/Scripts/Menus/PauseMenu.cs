@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
     private EventSystem EVRef;
     [SerializeField] private GameObject selectedUIElement;
     [SerializeField] private GameObject exitButton; // to disable in webgl
-    [SerializeField] private GameObject MobileUI; 
+    [SerializeField] private GameObject TouchUI; 
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -70,17 +70,19 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    IEnumerator DisableTouchUI()
+    {
+        yield return null;
+        TouchUI.SetActive(false);
+    }
+
     void ActivateMenu()
     {
         if (Application.platform == RuntimePlatform.WebGLPlayer || Application.isMobilePlatform)
         {
             exitButton.SetActive(false);
         }
-        //if (Application.isMobilePlatform)
-        //{
-            //Debug.Log("mobile!");
-            MobileUI.SetActive(false);
-        //}
+        StartCoroutine(DisableTouchUI());
         EVRef.SetSelectedGameObject(selectedUIElement);   // set current selected button
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -88,11 +90,7 @@ public class PauseMenu : MonoBehaviour
 
     public void DeactivateMenu()
     {
-        //if (Application.isMobilePlatform)
-        //{
-            //Debug.Log("mobile!");
-            MobileUI.SetActive(true);
-        //}
+        TouchUI.SetActive(true);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
     }
@@ -101,7 +99,7 @@ public class PauseMenu : MonoBehaviour
         AudioManager._instance.FadeOutMusic();
         Time.timeScale = 1f;
         GameIsPaused = !GameIsPaused;
-        LevelChangerScript._instance.FadeToLevel("MainMenu");
+        LevelChangerScript._instance.FadeToLevel("PressToContinue");
     }
 
     public void QuitGame()
