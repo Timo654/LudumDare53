@@ -71,7 +71,6 @@ public class HouseObject : MonoBehaviour
         Brakes.start();
         gameManager.DisablePlayerMovementInput();
         gameManager.CreateDust();
-        // play brake sound here?
         yield return new WaitForSecondsRealtime(1f);
         gameManager.OnGameStateChanged(GameState.Delivery);
     }

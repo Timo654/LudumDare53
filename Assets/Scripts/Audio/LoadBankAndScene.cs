@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class LoadBankAndScene : MonoBehaviour
 {
+    [SerializeField] private GameObject menuObject;
+
     [FMODUnity.BankRef]
     public List<string> banks;
 
@@ -30,6 +32,6 @@ public class LoadBankAndScene : MonoBehaviour
         {
             yield return null;
         }
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        menuObject.GetComponent<ClickToStartScene>().enabled = true;
     }
 }

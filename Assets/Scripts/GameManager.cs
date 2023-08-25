@@ -20,7 +20,7 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private GameObject MobileUI; // TODO
+    [SerializeField] private GameObject MobileUI;
     [SerializeField] GameObject deliveryPanel;
     [SerializeField] GameObject hintPanel;
     [SerializeField] GameObject timerCounter;

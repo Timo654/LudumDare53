@@ -47,6 +47,6 @@ public class Credits : MonoBehaviour
     // Start is called before the first frame update
     public void OnCreditsEnd()
     {
-        LevelChangerScript._instance.FadeToLevel("MainMenu");
+        LevelChangerScript._instance.FadeToLevel("PressToContinue");
     }
 }
