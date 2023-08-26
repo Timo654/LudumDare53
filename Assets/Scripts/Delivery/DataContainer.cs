@@ -10,6 +10,6 @@ public class DataContainer : ScriptableObject
     public string[] personNames;
     public DeliveryItemData[] Items;
     public Sprite[] treeSprites;
-
+    public Sprite[] cloudSprites;
 
 }

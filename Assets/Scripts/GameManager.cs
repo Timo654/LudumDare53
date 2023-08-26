@@ -136,11 +136,9 @@ public class GameManager : MonoBehaviour
         switch (_currentState)
         {
             case GameState.Start:
-                //TODO: Setup stuff for starting game
                 HandleStart();
                 break;
             case GameState.Running:
-                //TODO: Handle running animation etc.
                 Debug.Log($"switched game state to running");
                 HandleRunning();
                 break;
@@ -149,12 +147,10 @@ public class GameManager : MonoBehaviour
                 HandleDelivery();
                 break;
             case GameState.Win:
-                //TODO: Handle win
                 HandleWin();
                 Debug.Log($"switched game state to win");
                 break;
             case GameState.SecretWin:
-                //TODO: Handle win
                 HandleSecretWin();
                 Debug.Log($"switched game state to win");
                 break;
@@ -189,11 +185,7 @@ public class GameManager : MonoBehaviour
         DisablePlayerMovementInput();
         //PauseGame();
         Box.start();
-        //if (Application.isMobilePlatform)
-        //{
-        //    Debug.Log("mobile!");
-            MobileUI.SetActive(false);
-        //}
+        MobileUI.SetActive(false);
         deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
         hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();

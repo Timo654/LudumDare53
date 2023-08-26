@@ -34,3 +34,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4a286b8d05eed374393a179ff723acf8, type: 3}
   - {fileID: 21300000, guid: df2ea9d500477d24dbc41a68f0d692c7, type: 3}
   - {fileID: 21300000, guid: 201422dda7d634845a6c5887d6f0b8d4, type: 3}
+  cloudSprites:
+  - {fileID: -1148334797, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
+  - {fileID: -283018964, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
+  - {fileID: 1463091660, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
+  - {fileID: -1159427875, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
+  - {fileID: -80469845, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
+  - {fileID: -2080885540, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
