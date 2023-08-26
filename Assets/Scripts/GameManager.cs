@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEditor;
 
 public enum GameState
 {
@@ -138,11 +139,9 @@ public class GameManager : MonoBehaviour
         switch (_currentState)
         {
             case GameState.Start:
-                //TODO: Setup stuff for starting game
                 HandleStart();
                 break;
             case GameState.Running:
-                //TODO: Handle running animation etc.
                 Debug.Log($"switched game state to running");
                 HandleRunning();
                 break;
@@ -151,12 +150,10 @@ public class GameManager : MonoBehaviour
                 HandleDelivery();
                 break;
             case GameState.Win:
-                //TODO: Handle win
                 HandleWin();
                 Debug.Log($"switched game state to win");
                 break;
             case GameState.SecretWin:
-                //TODO: Handle win
                 HandleSecretWin();
                 Debug.Log($"switched game state to win");
                 break;
@@ -191,11 +188,7 @@ public class GameManager : MonoBehaviour
         DisablePlayerMovementInput();
         //PauseGame();
         Box.start();
-        //if (Application.isMobilePlatform)
-        //{
-        //    Debug.Log("mobile!");
-            MobileUI.SetActive(false);
-        //}
+        MobileUI.SetActive(false);
         deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
         hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();
@@ -243,26 +236,20 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
         {
-            StartCoroutine(DelayedGoodEnding());
+            StartCoroutine(DelayAudio(2.5f, GoodEnding));
             StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
         }
         else
         {
-            StartCoroutine(DelayedBadEnding());
+            StartCoroutine(DelayAudio(1.5f, BadEnding));
             StartCoroutine(DelaySceneLoad(2, "BadEnd"));
         }
     }
 
-    IEnumerator DelayedGoodEnding()
+    IEnumerator DelayAudio(float delay, EventInstance ev)
     {
-        yield return new WaitForSeconds(2.5f); // add a delay of 2 seconds
-        GoodEnding.start();
-    }
-
-    IEnumerator DelayedBadEnding()
-    {
-        yield return new WaitForSeconds(1.5f); // add a delay of 2 seconds
-        BadEnding.start();
+        yield return new WaitForSeconds(delay); // add a delay
+        ev.start();
     }
 
     void HandleSecretWin()
@@ -271,6 +258,7 @@ public class GameManager : MonoBehaviour
         CreateDust();
         Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
+        StartCoroutine(DelayAudio(1.5f, SecretEnding));
         StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
     }
 
@@ -278,7 +266,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         LevelChangerScript._instance.FadeToLevel(scene);
-        SecretEnding.start(); 
     }
 
     public void AddScore(int scoreToAdd)
