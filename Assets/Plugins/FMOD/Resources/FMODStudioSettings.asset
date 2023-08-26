@@ -484,8 +484,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/Deliveryfmod/Deliveryfmod.fspro
-  sourceBankPath: Assets/Deliveryfmod/Build
+  sourceProjectPath: ../../Documents/FMOD Studio/Deliveryfmod/Deliveryfmod.fspro
+  sourceBankPath: ../../Documents/FMOD Studio/Deliveryfmod/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

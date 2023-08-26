@@ -1754,6 +1754,13 @@ MonoBehaviour:
       Data3: -33001043
       Data4: -19926581
     Path: event:/Music/BadEnding
+  <SecretEndingMusic>k__BackingField:
+    Guid:
+      Data1: 1445674080
+      Data2: 1288067854
+      Data3: 2010618544
+      Data4: -1421756669
+    Path: event:/Music/SecretEnding
   <click>k__BackingField:
     Guid:
       Data1: 688111017
