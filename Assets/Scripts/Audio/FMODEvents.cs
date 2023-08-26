@@ -21,6 +21,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("UI")]
     [field: SerializeField] public EventReference click { get; private set; }
+    [field: SerializeField] public EventReference verbclick { get; private set; }
     
     public static FMODEvents instance {get; private set;}
 

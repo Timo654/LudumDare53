@@ -273,6 +273,13 @@ MonoBehaviour:
       Data3: 1577357230
       Data4: -1159600685
     Path: event:/UI/Click
+  <verbclick>k__BackingField:
+    Guid:
+      Data1: 454347073
+      Data2: 1167182299
+      Data3: 1888645533
+      Data4: 519475314
+    Path: event:/UI/VerbClick
 --- !u!1 &146103903
 GameObject:
   m_ObjectHideFlags: 0
