@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private EventInstance Brakes;
     private EventInstance BadEnding;
     private EventInstance GoodEnding;
+    private EventInstance SecretEnding;
     public HouseObject currentHouse;
     private GameState _currentState;
     private int _currentHappiness = 1000;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         playerWalk = player.GetComponent<Player_Walk>();
         BadEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.BadEndingMusic);
         GoodEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.GoodEndingMusic);
+        SecretEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.SecretEndingMusic);
     }
 
     private void OnEnable()
@@ -268,6 +270,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         LevelChangerScript._instance.FadeToLevel(scene);
+        SecretEnding.start(); 
     }
 
     public void AddScore(int scoreToAdd)
