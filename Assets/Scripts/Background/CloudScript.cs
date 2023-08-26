@@ -45,7 +45,7 @@ public class CloudScript : MonoBehaviour
     void Update()
     {
         //Translates the cloud to the right at the speed that is selected
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        transform.Translate(-speed * Time.deltaTime, 0, 0);
         //If cloud is off Screen, Destroy it.
         if (Camera.main.WorldToViewportPoint(transform.position - Vector3.right * width / 2).x < -1)
         {

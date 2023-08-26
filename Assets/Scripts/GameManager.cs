@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEditor;
 
 public enum GameState
 {
@@ -235,26 +236,20 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
         {
-            StartCoroutine(DelayedGoodEnding());
+            StartCoroutine(DelayAudio(2.5f, GoodEnding));
             StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
         }
         else
         {
-            StartCoroutine(DelayedBadEnding());
+            StartCoroutine(DelayAudio(1.5f, BadEnding));
             StartCoroutine(DelaySceneLoad(2, "BadEnd"));
         }
     }
 
-    IEnumerator DelayedGoodEnding()
+    IEnumerator DelayAudio(float delay, EventInstance ev)
     {
-        yield return new WaitForSeconds(2.5f); // add a delay of 2 seconds
-        GoodEnding.start();
-    }
-
-    IEnumerator DelayedBadEnding()
-    {
-        yield return new WaitForSeconds(1.5f); // add a delay of 2 seconds
-        BadEnding.start();
+        yield return new WaitForSeconds(delay); // add a delay
+        ev.start();
     }
 
     void HandleSecretWin()
@@ -263,6 +258,7 @@ public class GameManager : MonoBehaviour
         CreateDust();
         Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
+        StartCoroutine(DelayAudio(1.5f, SecretEnding));
         StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
     }
 
@@ -270,7 +266,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         LevelChangerScript._instance.FadeToLevel(scene);
-        SecretEnding.start(); 
     }
 
     public void AddScore(int scoreToAdd)

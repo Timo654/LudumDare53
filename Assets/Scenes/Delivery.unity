@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   objectToPool: {fileID: 5701700680306562343, guid: f91702cc91d375f4e906597787cec2d5, type: 3}
-  amountToPool: 20
+  amountToPool: 40
 --- !u!224 &536056363 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2009165667065386119, guid: a07c4eac9529440438f4642fc7f7687c, type: 3}
@@ -5395,7 +5395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: c7efc200ac5820a4498ce32708a12b18, type: 2}
-  delay: 1
+  delay: 0.75
 --- !u!1 &1212241646
 GameObject:
   m_ObjectHideFlags: 0
