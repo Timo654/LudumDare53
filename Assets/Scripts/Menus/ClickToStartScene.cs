@@ -1,13 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using FMODUnity;
 using FMOD.Studio;
+using UnityEditor;
 
 public class ClickToStartScene : MonoBehaviour
 {
     [SerializeField] private GameObject anyKeyText;
+    [SerializeField] private GameObject mainMenu;
     private EventInstance VerbClick;
     bool pressed = false;
+    bool inMenu = false;
 
     void Start() 
     {
@@ -20,7 +21,7 @@ public class ClickToStartScene : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKey && !pressed)
+        if (Input.anyKeyDown && !pressed)
         {
             gameObject.GetComponent<Animator>().enabled = true;
             pressed = true;
@@ -28,10 +29,16 @@ public class ClickToStartScene : MonoBehaviour
             anyKeyText.GetComponent<Animator>().Play("anytext_fadeout");
 
         }
+        else if (Input.anyKeyDown && !inMenu)
+        {
+            gameObject.GetComponent<Animator>().Play("Menu");
+        }
     }
 
     public void OnLoadFinish()
     {
-        SceneManager.LoadScene("MainMenu");
+        inMenu = true;
+        mainMenu.SetActive(true);
+        AudioManager._instance.InitializeMusic(FMODEvents.instance.menumusic);
     }
 }

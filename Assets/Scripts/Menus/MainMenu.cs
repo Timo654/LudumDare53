@@ -1,14 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using FMOD.Studio;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject exitButton; // to disable in webgl
-
-    private EventInstance musicEventInstance;
 
     void Start()
     {
@@ -16,12 +10,11 @@ public class MainMenu : MonoBehaviour
         {
             exitButton.SetActive(false);
         }
-        AudioManager._instance.InitializeMusic(FMODEvents.instance.menumusic);
     }
 
     public void PlayGame ()
     {
-        LevelChangerScript._instance.FadeToLevel("Delivery");
+        LevelChangerScript._instance.FadeToLevel("LV1_Delivery");
     }
     public void OpenCredits ()
     {

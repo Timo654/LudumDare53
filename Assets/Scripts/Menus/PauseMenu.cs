@@ -99,7 +99,7 @@ public class PauseMenu : MonoBehaviour
         AudioManager._instance.FadeOutMusic();
         Time.timeScale = 1f;
         GameIsPaused = !GameIsPaused;
-        LevelChangerScript._instance.FadeToLevel("PressToContinue");
+        LevelChangerScript._instance.FadeToLevel("MainMenu");
     }
 
     public void QuitGame()

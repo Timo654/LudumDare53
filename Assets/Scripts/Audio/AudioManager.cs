@@ -19,7 +19,8 @@ public class AudioManager : MonoBehaviour
     private Bus musicBus;
 
     private Bus sfxBus;
-
+    private Bus reverbBus;
+    private Bus uiBus;
 
     private List<EventInstance> eventInstances;
 
@@ -55,9 +56,6 @@ public class AudioManager : MonoBehaviour
     {
         // skip if already exists
         if (_instance) return;
-        Scene scene = SceneManager.GetActiveScene();
-        if (scene.name == "BankLoader") return;
-
         InitializeInstance(new GameObject(nameof(AudioManager)).AddComponent<AudioManager>());
     }
 
@@ -66,10 +64,8 @@ public class AudioManager : MonoBehaviour
         _instance = instance;
         DontDestroyOnLoad(_instance.gameObject);
         _instance.eventInstances = new List<EventInstance>();
-
         _instance.musicBus = RuntimeManager.GetBus("bus:/Music");
         _instance.sfxBus = RuntimeManager.GetBus("bus:/SFX");
-
         _instance.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
         _instance.musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
 
