@@ -1175,6 +1175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anyKeyText: {fileID: 1407917647}
   mainMenu: {fileID: 6629387}
+  selectedUIElement: {fileID: 621956105}
 --- !u!1 &281443949
 GameObject:
   m_ObjectHideFlags: 0

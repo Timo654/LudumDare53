@@ -1,11 +1,13 @@
 using UnityEngine;
 using FMOD.Studio;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
 public class ClickToStartScene : MonoBehaviour
 {
     [SerializeField] private GameObject anyKeyText;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject selectedUIElement;
     private EventInstance VerbClick;
     bool pressed = false;
     bool inMenu = false;
@@ -39,6 +41,7 @@ public class ClickToStartScene : MonoBehaviour
     {
         inMenu = true;
         mainMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(selectedUIElement);
         AudioManager._instance.InitializeMusic(FMODEvents.instance.menumusic);
     }
 }
