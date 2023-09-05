@@ -21,10 +21,13 @@ public class PauseMenu : MonoBehaviour
         EVRef = EventSystem.current; // get the current event system
     }
 
-    private void Start()
+    public void RestartScene()
     {
-        
+        Debug.Log("Restarted scene!");
+        GameIsPaused = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     private void OnEnable()
     {
         menu = playerControls.Menu.Escape;

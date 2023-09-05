@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager _instance { get; private set; }
     // public static AudioManager instance;
-    private EventInstance musicEventInstance;
+    private static EventInstance musicEventInstance;
 
 
     // public access for the Singleton
@@ -86,10 +86,6 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    private void Start() {
-        
-    }
-
     private void Update() {
         musicBus.setVolume(musicVolume);
         sfxBus.setVolume(SFXVolume);
@@ -106,6 +102,13 @@ public class AudioManager : MonoBehaviour
         musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         musicEventInstance.release();
 
+    }
+
+    public static bool IsPlaying()
+    {
+        PLAYBACK_STATE state;
+        musicEventInstance.getPlaybackState(out state);
+        return state != PLAYBACK_STATE.STOPPED;
     }
 
     private void CleanUp() {

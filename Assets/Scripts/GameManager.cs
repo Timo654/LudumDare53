@@ -165,7 +165,8 @@ public class GameManager : MonoBehaviour
 
     void HandleStart()
     {
-        AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
+        if (!AudioManager.IsPlaying())
+            AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
         OnGameStateChanged(GameState.Running);
