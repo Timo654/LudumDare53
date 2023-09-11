@@ -13,7 +13,6 @@ public class Timer : MonoBehaviour
 
     public void StartTimer(float start)
     {
-        //Time.timeScale = 1f;
         Debug.Log("started timer");
         time = start;
         counting = true;
@@ -36,7 +35,7 @@ public class Timer : MonoBehaviour
     {
         if (!counting) return;
         
-        time -= Time.deltaTime;
+        time -= Time.unscaledDeltaTime;
         if (time <= 0f) EndTimer(true);
         UpdateGUI.Invoke(GetTime());
     }
