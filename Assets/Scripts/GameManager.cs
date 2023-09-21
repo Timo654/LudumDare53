@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
     void HandleRunning()
     {
         UnpauseGame();
-        if (Application.isMobilePlatform)
+        if (BuildConstants.isMobile)
         {
             Debug.Log("mobile!");
             

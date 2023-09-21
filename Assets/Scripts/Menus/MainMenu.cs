@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer || Application.isMobilePlatform)
+        if (BuildConstants.isWebGL|| BuildConstants.isMobile || BuildConstants.isExpo)
         {
             exitButton.SetActive(false);
         }
