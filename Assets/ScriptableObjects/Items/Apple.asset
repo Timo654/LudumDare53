@@ -15,9 +15,9 @@ MonoBehaviour:
   itemName: Apple
   artwork: {fileID: 21300000, guid: 3b1b96fe398ea624488d1a50647c8f7a, type: 3}
   text:
-  - They often order a red, yellow or green fruit.
+  - They often order a red, yellow and green fruit.
   - I don't think they're very thick-skinned.
   - I've heard they're pretty knowledgeable.
   - I'd sure love a pie just about now.
-  - Is it autumn yet?
+  - Are there any doctors around?
   - Plenty of seeds.

@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame ()
     {
-        LevelChangerScript._instance.FadeToLevel("LV1_Delivery");
+        LevelChangerScript._instance.FadeToLevel("Opening");
     }
     public void OpenCredits ()
     {
