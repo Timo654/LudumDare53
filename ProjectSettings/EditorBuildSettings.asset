@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LV1_Delivery.unity
     guid: 4307f9ed31e7cfb4fa7e83b026373fb5
   - enabled: 1
+    path: Assets/Scenes/LV2_Delivery.unity
+    guid: 3285bb8c156745849ab71e2101ae07a0
+  - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: db74738ce022b484ca701a1882fc06d9
   - enabled: 1
