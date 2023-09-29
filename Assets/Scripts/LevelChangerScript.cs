@@ -21,6 +21,7 @@ public class LevelChangerScript : MonoBehaviour
 
     public void OnFadeComplete ()
     {
+        AudioManager._instance.StopSFX();
         SceneManager.LoadScene(levelToLoad);
     }
 }

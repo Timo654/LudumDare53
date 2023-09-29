@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
-using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -95,6 +93,11 @@ public class AudioManager : MonoBehaviour
         musicEventInstance = CreateInstance(musicEventReference);
         musicEventInstance.start();
 
+    }
+
+    public void StopSFX()
+    {
+        sfxBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void FadeOutMusic()
