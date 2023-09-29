@@ -137,7 +137,21 @@ public class GameManager : MonoBehaviour
         playerWalk.EnableBinds();
     }
 
-
+    private void Update()
+    {
+        if (BuildConstants.isExpo || BuildConstants.isDebug) {
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                AudioManager._instance.FadeOutMusic();
+                SceneManager.LoadScene("LV1_Delivery");
+            }
+            else if (Input.GetKeyDown(KeyCode.F6))
+            {
+                AudioManager._instance.FadeOutMusic();
+                SceneManager.LoadScene("LV2_Delivery");
+            }
+        }    
+    }
 
     public EventInstance GetFootsteps()
     { 
