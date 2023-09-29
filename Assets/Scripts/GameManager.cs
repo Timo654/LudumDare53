@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject deliveryPanel;
     [SerializeField] GameObject hintPanel;
     [SerializeField] GameObject timerCounter;
+    [SerializeField] GameObject tutorialUI;
     public TextMeshPro helpText;
     private Timer timer;
     private EventInstance Brakes;
@@ -40,11 +41,21 @@ public class GameManager : MonoBehaviour
     private EventInstance Box;
     private TextMeshProUGUI counterText;
     private Player_Walk playerWalk;
+    bool isFirstTime;
+    public float timerLength = 7f;
     public static GameManager _instance;
     // Start is called before the first frame update
     void Start()
     {
         _instance = this;
+        if (BuildConstants.isExpo)
+        {
+            isFirstTime = true;
+        }
+        else
+        {     
+            isFirstTime = PlayerPrefs.GetInt("isFirstTime", 1) == 1;
+        }
         Brakes = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
         deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
@@ -210,11 +221,17 @@ public class GameManager : MonoBehaviour
         MobileUI.SetActive(false);
         deliveryController.UpdateItems();
         deliveryPanel.SetActive(true);
+        float _timerLength = timerLength;
+        if (isFirstTime && tutorialUI != null)
+        {
+            tutorialUI.SetActive(true);
+            _timerLength = 60f;
+        }
         hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
         timerCounter.SetActive(true);
-        timer.StartTimer(7f);
+        timer.StartTimer(_timerLength);
     }
 
     public void HandOverItem(DeliveryItem deliveryItem)
@@ -223,6 +240,11 @@ public class GameManager : MonoBehaviour
         timerCounter.SetActive(false);
         int scoreToAdd;
         Debug.Log("selected" + deliveryItem.GetName());
+        if (isFirstTime && tutorialUI != null)
+        {
+            PlayerPrefs.SetInt("isFirstTime", 0);
+            tutorialUI.SetActive(false);
+        }
         deliveryPanel.SetActive(false);
         if (currentHouse != null)
         {
