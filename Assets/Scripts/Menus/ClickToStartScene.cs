@@ -23,7 +23,7 @@ public class ClickToStartScene : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKeyDown && !pressed)
+        if ((Input.anyKeyDown || (Input.touchCount > 0)) && !pressed)
         {
             gameObject.GetComponent<Animator>().enabled = true;
             pressed = true;
@@ -31,7 +31,7 @@ public class ClickToStartScene : MonoBehaviour
             anyKeyText.GetComponent<Animator>().Play("anytext_fadeout");
 
         }
-        else if (Input.anyKeyDown && !inMenu)
+        else if ((Input.anyKeyDown || (Input.touchCount > 0)) && !inMenu)
         {
             gameObject.GetComponent<Animator>().Play("Menu");
         }

@@ -14,13 +14,7 @@ public class OPScript : MonoBehaviour
     bool inputBlocked = false;
     Image _nextImage;
     Image _image;
-    // Start is called before the first frame update
 
-    private EventInstance CrowFly;
-    private EventInstance Ticking;
-    private EventInstance CrowWingPlusAnger;
-    private EventInstance Sigh;
-    private EventInstance ListReading;
     void Start()
     {
         
@@ -33,7 +27,7 @@ public class OPScript : MonoBehaviour
     }
     void Update()
     {
-        if (Input.anyKeyDown & !inputBlocked)
+        if ((Input.anyKeyDown || (Input.touchCount > 0)) & !inputBlocked)
         {
             currentSprite += 1;
             if (currentSprite < openingSprites.Length)
