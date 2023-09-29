@@ -25,6 +25,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Restarted scene!");
         GameIsPaused = false;
+        AudioManager._instance.StopSFX();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
