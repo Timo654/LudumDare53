@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     private EventInstance BadEnding;
     private EventInstance GoodEnding;
     private EventInstance SecretEnding;
+    private EventInstance SecretEnding2;
     public HouseObject currentHouse;
     private GameState _currentState;
     public bool isInputDisabled = false;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
         BadEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.BadEndingMusic);
         GoodEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.GoodEndingMusic);
         SecretEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.SecretEndingMusic);
+        SecretEnding2 = AudioManager._instance.CreateInstance(FMODEvents.instance.SecretEndingMusic); // TODO
     }
 
     private void OnEnable()
@@ -244,6 +246,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("isFirstTime", 0);
             tutorialUI.SetActive(false);
+            isFirstTime = false;
         }
         deliveryPanel.SetActive(false);
         if (currentHouse != null)
@@ -284,7 +287,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                StartCoroutine(DelaySceneLoad(2, "LV2_Delivery"));
+                StartCoroutine(DelaySceneLoad(2, "LV1_End"));
             }
         }
         else
@@ -306,8 +309,16 @@ public class GameManager : MonoBehaviour
         CreateDust();
         Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
-        StartCoroutine(DelayAudio(1.5f, SecretEnding));
-        StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
+        if (SceneManager.GetActiveScene().name == "LV2_Delivery")
+        {
+            StartCoroutine(DelayAudio(1.5f, SecretEnding)); // TODO
+            StartCoroutine(DelaySceneLoad(2, "SecretEnd2"));
+        }
+        else
+        {
+            StartCoroutine(DelayAudio(1.5f, SecretEnding));
+            StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
+        }    
     }
 
     IEnumerator DelaySceneLoad(float delay, string scene)
