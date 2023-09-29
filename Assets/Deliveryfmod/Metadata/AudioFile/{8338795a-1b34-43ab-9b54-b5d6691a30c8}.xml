@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8338795a-1b34-43ab-9b54-b5d6691a30c8}">
+		<property name="assetPath">
+			<value>Sounds and Music/SFX/listreadingSound.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.7647165532879818</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{23be5144-1459-4c79-9f66-5476a71fde77}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using FMODUnity;
+using FMOD.Studio;
 using DG.Tweening;
 using System.Collections;
 
@@ -14,13 +15,21 @@ public class OPScript : MonoBehaviour
     Image _nextImage;
     Image _image;
     // Start is called before the first frame update
+
+    private EventInstance CrowFly;
+    private EventInstance Ticking;
+    private EventInstance CrowWingPlusAnger;
+    private EventInstance Sigh;
+    private EventInstance ListReading;
     void Start()
     {
+        
         _image = transform.GetChild(1).GetComponent<Image>();
         _image.sprite = openingSprites[currentSprite];
         _nextImage = transform.GetChild(2).GetComponent<Image>();
-        //AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
-        //RuntimeManager.PlayOneShot(sfxRef[currentSprite]); // do we really want to play a sound right away?
+        AudioManager._instance.InitializeMusic(FMODEvents.instance.FirstCutsceneMusic);
+        if (currentSprite < sfxRef.Length)
+            RuntimeManager.PlayOneShot(sfxRef[currentSprite]); 
     }
     void Update()
     {
@@ -30,7 +39,8 @@ public class OPScript : MonoBehaviour
             if (currentSprite < openingSprites.Length)
             {
                 StartCoroutine(FadeSprites(openingSprites[currentSprite]));
-                //RuntimeManager.PlayOneShot(sfxRef[currentSprite]); // could play in coroutine so it plays after it fully switches? dunno
+                if (currentSprite < sfxRef.Length)
+                    RuntimeManager.PlayOneShot(sfxRef[currentSprite]); 
             }
             else
             {

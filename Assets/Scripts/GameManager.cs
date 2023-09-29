@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
             Scene scene = SceneManager.GetActiveScene();
             if (scene.name == "LV2_Delivery")
             {
-                AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic); // TODO - add LVL2 music here if we're going to make one
+                AudioManager._instance.InitializeMusic(FMODEvents.instance.CityMainMusic); 
             }
             else
             {

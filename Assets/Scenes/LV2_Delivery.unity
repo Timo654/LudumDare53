@@ -1120,6 +1120,41 @@ MonoBehaviour:
       Data3: 2077364661
       Data4: 348477471
     Path: event:/SFX/PlayerBox
+  <playerSigh>k__BackingField:
+    Guid:
+      Data1: -1668123432
+      Data2: 1160842447
+      Data3: -1395375221
+      Data4: 1775056837
+    Path: event:/SFX/Sigh
+  <crowFlySound>k__BackingField:
+    Guid:
+      Data1: -371833517
+      Data2: 1174742474
+      Data3: 1333078441
+      Data4: 721533929
+    Path: event:/SFX/CrowFly
+  <crowWingAngerSound>k__BackingField:
+    Guid:
+      Data1: 1530836947
+      Data2: 1228134140
+      Data3: 756769452
+      Data4: -1938324784
+    Path: event:/SFX/CrowWingAnger
+  <tickingSound>k__BackingField:
+    Guid:
+      Data1: 579077274
+      Data2: 1095147561
+      Data3: 435843748
+      Data4: -675526272
+    Path: event:/SFX/Ticking
+  <listreadingSound>k__BackingField:
+    Guid:
+      Data1: -215681749
+      Data2: 1148194999
+      Data3: 848315323
+      Data4: -1517772209
+    Path: event:/SFX/ListReading
   <mainmusic>k__BackingField:
     Guid:
       Data1: 359338245
@@ -1162,6 +1197,20 @@ MonoBehaviour:
       Data3: 2010618544
       Data4: -1421756669
     Path: event:/Music/SecretEnding
+  <CityMainMusic>k__BackingField:
+    Guid:
+      Data1: -893136637
+      Data2: 1161585610
+      Data3: 741489328
+      Data4: 523349985
+    Path: event:/Music/CityMainMusic
+  <FirstCutsceneMusic>k__BackingField:
+    Guid:
+      Data1: -616715179
+      Data2: 1195047767
+      Data3: 1493360053
+      Data4: -1963746662
+    Path: event:/Music/CutsceneMusic
   <click>k__BackingField:
     Guid:
       Data1: 688111017
