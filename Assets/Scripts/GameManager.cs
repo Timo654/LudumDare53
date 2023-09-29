@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (SceneManager.GetActiveScene().name == "LV2_Delivery")
         {
-            StartCoroutine(DelayAudio(1.5f, SecretEnding)); // TODO
+            //StartCoroutine(DelayAudio(1.5f, SecretEnding2)); // TODO
             StartCoroutine(DelaySceneLoad(2, "SecretEnd2"));
         }
         else
