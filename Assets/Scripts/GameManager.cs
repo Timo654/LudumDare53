@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 using TMPro;
 using FMODUnity;
 using FMOD.Studio;
-using UnityEditor;
 
 public enum GameState
 {
@@ -166,7 +165,17 @@ public class GameManager : MonoBehaviour
     void HandleStart()
     {
         if (!AudioManager.IsPlaying())
-            AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            if (scene.name == "LV2_Delivery")
+            {
+                AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic); // TODO - add LVL2 music here if we're going to make one
+            }
+            else
+            {
+                AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
+            }
+        }
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
         OnGameStateChanged(GameState.Running);
@@ -237,8 +246,15 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
         {
-            StartCoroutine(DelayAudio(2.5f, GoodEnding));
-            StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
+            if (SceneManager.GetActiveScene().name == "LV2_Delivery")
+            {
+                StartCoroutine(DelayAudio(2.5f, GoodEnding));
+                StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
+            }
+            else
+            {
+                StartCoroutine(DelaySceneLoad(2, "LV2_Delivery"));
+            }
         }
         else
         {

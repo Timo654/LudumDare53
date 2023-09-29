@@ -40,11 +40,17 @@ public class CloudManagerScript : MonoBehaviour
                 //GameObject cloud = Instantiate(cloudPrefab);           
                 yield return new WaitForSeconds(delay);
             }
+            break;
         }
     }
 
     void Prewarm()
     {
+        if (gameData.cloudSprites.Length <= 0)
+        {
+            spawnClouds = false;
+            return;
+        }
         float camWidth = Camera.main.orthographicSize * Camera.main.aspect;
         for (int i= 0; i < 10; i++)
         {
