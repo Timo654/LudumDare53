@@ -16,3 +16,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: da140185433016848b082e544f8dbc46, type: 3}
   text:
   - This snack gives quite a boost to your spirit.
+  - Great for a party.
+  - Usually round, but sometimes square.
+  - I should order one when I get home!

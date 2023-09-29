@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        if (GameManager._instance.isInputDisabled) return;
         if (Time.timeScale == 0f && !GameIsPaused)
         {
             Debug.Log("Game already paused, not able to pause again.");

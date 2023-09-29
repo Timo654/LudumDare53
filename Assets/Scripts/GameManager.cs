@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     private EventInstance SecretEnding;
     public HouseObject currentHouse;
     private GameState _currentState;
+    public bool isInputDisabled = false;
     private int _currentHappiness = 1000;
     private DeliveryController deliveryController;
     public List<DeliveryItem> inventory = new();
@@ -39,9 +40,11 @@ public class GameManager : MonoBehaviour
     private EventInstance Box;
     private TextMeshProUGUI counterText;
     private Player_Walk playerWalk;
+    public static GameManager _instance;
     // Start is called before the first frame update
     void Start()
     {
+        _instance = this;
         Brakes = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
         deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
@@ -61,6 +64,10 @@ public class GameManager : MonoBehaviour
         timer.UpdateGUI += UpdateTimerText;
     }
 
+    public GameState GetCurrentState()
+    {
+        return _currentState;
+    }
     private void OnDisable()
     {
         timer.OnZero -= RanOutOfTime;
@@ -107,11 +114,13 @@ public class GameManager : MonoBehaviour
 
     public void DisablePlayerMovementInput()
     {
+        isInputDisabled = true;
         playerWalk.DisableBinds();
     }
 
     public void EnablePlayerMovementInput()
     {
+        isInputDisabled = false;
         playerWalk.EnableBinds();
     }
 
