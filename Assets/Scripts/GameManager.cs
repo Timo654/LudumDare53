@@ -140,15 +140,20 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (BuildConstants.isExpo || BuildConstants.isDebug) {
-            if (Input.GetKeyDown(KeyCode.F5))
+            if (Input.GetKeyDown(KeyCode.F6))
             {
                 AudioManager._instance.FadeOutMusic();
                 SceneManager.LoadScene("LV1_Delivery");
             }
-            else if (Input.GetKeyDown(KeyCode.F6))
+            else if (Input.GetKeyDown(KeyCode.F7))
             {
                 AudioManager._instance.FadeOutMusic();
                 SceneManager.LoadScene("LV2_Delivery");
+            }
+            else if (Input.GetKeyDown(KeyCode.F5))
+            {
+                AudioManager._instance.FadeOutMusic();
+                SceneManager.LoadScene("MainMenu");
             }
         }    
     }
