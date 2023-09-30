@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 1256091693
+    locked: 0
+  - name: Clouds
+    uniqueID: 2366093145
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

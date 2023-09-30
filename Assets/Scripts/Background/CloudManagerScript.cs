@@ -35,6 +35,7 @@ public class CloudManagerScript : MonoBehaviour
                 {
                     cloud.GetComponent<SpriteRenderer>().sprite = gameData.cloudSprites[Random.Range(0, gameData.cloudSprites.Length)];
                     cloud.GetComponent<SpriteRenderer>().color = Color.white;
+                    cloud.GetComponent<SpriteRenderer>().sortingOrder = Random.Range(0, 100);
                     cloud.SetActive(true);
                 }
                 //GameObject cloud = Instantiate(cloudPrefab);           
@@ -60,6 +61,7 @@ public class CloudManagerScript : MonoBehaviour
             {
                 cloud.GetComponent<SpriteRenderer>().sprite = gameData.cloudSprites[Random.Range(0, gameData.cloudSprites.Length)];
                 cloud.GetComponent<SpriteRenderer>().color = Color.white;
+                cloud.GetComponent<SpriteRenderer>().sortingOrder = i + 1;
                 cloud.SetActive(true);
                 Vector3 temp = transform.position;
                 temp.x = spawnPos;

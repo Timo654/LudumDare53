@@ -23,7 +23,12 @@ public class ClickToStartScene : MonoBehaviour
 
     void Update()
     {
-        if ((Input.anyKeyDown || (Input.touchCount > 0)) && !pressed)
+        bool mobileTouch = false;
+        if (Input.touchCount > 0)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began) mobileTouch = true;
+        }
+        if ((Input.anyKeyDown || mobileTouch) && !pressed)
         {
             gameObject.GetComponent<Animator>().enabled = true;
             pressed = true;
@@ -31,7 +36,7 @@ public class ClickToStartScene : MonoBehaviour
             anyKeyText.GetComponent<Animator>().Play("anytext_fadeout");
 
         }
-        else if ((Input.anyKeyDown || (Input.touchCount > 0)) && !inMenu)
+        else if ((Input.anyKeyDown || mobileTouch) && !inMenu)
         {
             gameObject.GetComponent<Animator>().Play("Menu");
         }

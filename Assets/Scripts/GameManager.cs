@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("mobile!");
             
-            helpText.text = "Move by tapping either side of your screen. Go make those deliveries!";
+            helpText.text = "Move by tapping the sides of your screen. \r\nGo make those deliveries!";
         }
         MobileUI.SetActive(true);
     }
