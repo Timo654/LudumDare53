@@ -9,6 +9,7 @@ public class OPScript : MonoBehaviour
 {
     [SerializeField] Sprite[] openingSprites;
     [SerializeField] EventReference[] sfxRef;
+    [SerializeField] EventReference music;
     int currentSprite = 0;
     public string nextScene = "LV1_Delivery";
     bool inputBlocked = false;
@@ -21,7 +22,7 @@ public class OPScript : MonoBehaviour
         _image = transform.GetChild(1).GetComponent<Image>();
         _image.sprite = openingSprites[currentSprite];
         _nextImage = transform.GetChild(2).GetComponent<Image>();
-        AudioManager._instance.InitializeMusic(FMODEvents.instance.FirstCutsceneMusic);
+        AudioManager._instance.InitializeMusic(music);
         if (currentSprite < sfxRef.Length)
             RuntimeManager.PlayOneShot(sfxRef[currentSprite]); 
     }

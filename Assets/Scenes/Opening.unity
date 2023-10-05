@@ -1342,6 +1342,13 @@ MonoBehaviour:
       Data3: -1395375221
       Data4: 1775056837
     Path: event:/SFX/Sigh
+  music:
+    Guid:
+      Data1: -616715179
+      Data2: 1195047767
+      Data3: 1493360053
+      Data4: -1963746662
+    Path: event:/Music/CutsceneMusic
   nextScene: LV1_Delivery
 --- !u!1 &2018498526
 GameObject:

@@ -1310,6 +1310,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dd79afc9a046bbe4d8c87e69979058de, type: 3}
   - {fileID: 21300000, guid: cb5403e7b2f755349a2ebe1f364a3695, type: 3}
   sfxRef: []
+  music:
+    Guid:
+      Data1: -616715179
+      Data2: 1195047767
+      Data3: 1493360053
+      Data4: -1963746662
+    Path: event:/Music/CutsceneMusic
   nextScene: LV2_Delivery
 --- !u!1 &2018498526
 GameObject:
