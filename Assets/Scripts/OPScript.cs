@@ -1,24 +1,43 @@
 using UnityEngine;
 using UnityEngine.UI;
 using FMODUnity;
-using FMOD.Studio;
 using DG.Tweening;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class OPScript : MonoBehaviour
 {
     [SerializeField] Sprite[] openingSprites;
     [SerializeField] EventReference[] sfxRef;
     [SerializeField] EventReference music;
+    private InputAction skipButton;
     int currentSprite = 0;
     public string nextScene = "LV1_Delivery";
     bool inputBlocked = false;
     Image _nextImage;
     Image _image;
+    private PlayerControls playerControls;
+
+    private void OnEnable()
+    {
+        playerControls = new PlayerControls();
+        skipButton = playerControls.Menu.Escape;
+        skipButton.Enable();
+        skipButton.performed += OnSkipButton;
+    }
+
+    private void OnDisable()
+    {
+        skipButton.Disable();
+    }
+    public void OnSkipButton(InputAction.CallbackContext context)
+    {
+        inputBlocked = true;
+        OnOpeningEnd();
+    }
 
     void Start()
     {
-        
         _image = transform.GetChild(1).GetComponent<Image>();
         _image.sprite = openingSprites[currentSprite];
         _nextImage = transform.GetChild(2).GetComponent<Image>();
@@ -31,7 +50,7 @@ public class OPScript : MonoBehaviour
         bool mobileTouch = false;
         if (Input.touchCount > 0)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Began) mobileTouch = true;
+            if (Input.GetTouch(0).phase == UnityEngine.TouchPhase.Began) mobileTouch = true;
         }
         if ((Input.anyKeyDown || mobileTouch) & !inputBlocked)
         {
