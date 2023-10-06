@@ -381,7 +381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Timo Jairus\n\n\n\n\n\n\nEllis Donnik\n\n\n\n\n\n\nTimur Nizamov\n\n\n\n\n\nketrub\njason098\n\n\n\n\nUT
+  m_text: "Timo Jairus\n\n\n\n\n\n\nEllis Donnik\n\n\n\n\n\n\nTimur Nizamov\n\n\n\n\n\nketrub\njason098\n\n\n\nMi-nk\n\n\n\n\nUT
     M\xE4nguj\xE4mm 2023\n\n\nDid you find all the endings?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
@@ -709,9 +709,14 @@ MonoBehaviour:
 
 
 
+    Special
+    Thanks
 
-    Made
-    for
+
+
+
+
+    Made for
 
 
 
