@@ -38,4 +38,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/BadEnd.unity
     guid: 16539bf018253ff4bbbc3a8f65e9da24
+  - enabled: 1
+    path: Assets/Scenes/Levels/LevelB/LVB_Delivery.unity
+    guid: 4b6ce44932eb30f41a6007128027e9e0
+  - enabled: 1
+    path: Assets/Scenes/Levels/LevelB/BackroomsLose.unity
+    guid: cb4b0bf4622fd4941a0222dd48ace125
+  - enabled: 1
+    path: Assets/Scenes/Levels/LevelB/BackroomsWin.unity
+    guid: 52de9457d5196dd48aabca92a9d7cc73
+  - enabled: 1
+    path: Assets/Scenes/Levels/LevelB/BackroomsSecret.unity
+    guid: 3a5dfd10b4e5b264fbc64a88daf9c88c
   m_configObjects: {}

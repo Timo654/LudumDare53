@@ -1,182 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &252371799182871779
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6477462616618130605}
-  - component: {fileID: 4770465168859987066}
-  m_Layer: 0
-  m_Name: FMODEvents
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6477462616618130605
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252371799182871779}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8973437663376849848}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4770465168859987066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252371799182871779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56645a6eebb57846b84dc4e82c539c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <playerFootsteps>k__BackingField:
-    Guid:
-      Data1: -557282102
-      Data2: 1333397931
-      Data3: -1837466211
-      Data4: 41236034
-    Path: event:/SFX/PlayerWroom
-  <playerBrakes>k__BackingField:
-    Guid:
-      Data1: 448594080
-      Data2: 1323150119
-      Data3: 347193492
-      Data4: 1352682393
-    Path: event:/SFX/PlayerBrakes
-  <playerBox>k__BackingField:
-    Guid:
-      Data1: 2089941434
-      Data2: 1256253026
-      Data3: 2077364661
-      Data4: 348477471
-    Path: event:/SFX/PlayerBox
-  <playerSigh>k__BackingField:
-    Guid:
-      Data1: -1668123432
-      Data2: 1160842447
-      Data3: -1395375221
-      Data4: 1775056837
-    Path: event:/SFX/Sigh
-  <crowFlySound>k__BackingField:
-    Guid:
-      Data1: -371833517
-      Data2: 1174742474
-      Data3: 1333078441
-      Data4: 721533929
-    Path: event:/SFX/CrowFly
-  <crowWingAngerSound>k__BackingField:
-    Guid:
-      Data1: 1530836947
-      Data2: 1228134140
-      Data3: 756769452
-      Data4: -1938324784
-    Path: event:/SFX/CrowWingAnger
-  <tickingSound>k__BackingField:
-    Guid:
-      Data1: 579077274
-      Data2: 1095147561
-      Data3: 435843748
-      Data4: -675526272
-    Path: event:/SFX/Ticking
-  <listreadingSound>k__BackingField:
-    Guid:
-      Data1: -215681749
-      Data2: 1148194999
-      Data3: 848315323
-      Data4: -1517772209
-    Path: event:/SFX/ListReading
-  <mainmusic>k__BackingField:
-    Guid:
-      Data1: 359338245
-      Data2: 1205906289
-      Data3: -282994534
-      Data4: -2107208129
-    Path: event:/Music/MainMusic
-  <oldmainmusic>k__BackingField:
-    Guid:
-      Data1: -785593884
-      Data2: 1228560375
-      Data3: 110154648
-      Data4: 1535008135
-    Path: event:/Music/OldMainMusic
-  <menumusic>k__BackingField:
-    Guid:
-      Data1: 1447326907
-      Data2: 1306589036
-      Data3: 646729606
-      Data4: 1266504785
-    Path: event:/Music/MenuMusic
-  <creditmusic>k__BackingField:
-    Guid:
-      Data1: 1246079392
-      Data2: 1155141369
-      Data3: 851777421
-      Data4: -1845820395
-    Path: event:/Music/Credits
-  <GoodEndingMusic>k__BackingField:
-    Guid:
-      Data1: 633388441
-      Data2: 1128512174
-      Data3: 1734105276
-      Data4: -1424685326
-    Path: event:/Music/GoodEnding
-  <BadEndingMusic>k__BackingField:
-    Guid:
-      Data1: -1004656288
-      Data2: 1270246334
-      Data3: -33001043
-      Data4: -19926581
-    Path: event:/Music/BadEnding
-  <SecretEndingMusic>k__BackingField:
-    Guid:
-      Data1: 1445674080
-      Data2: 1288067854
-      Data3: 2010618544
-      Data4: -1421756669
-    Path: event:/Music/SecretEnding
-  <CityMainMusic>k__BackingField:
-    Guid:
-      Data1: -893136637
-      Data2: 1161585610
-      Data3: 741489328
-      Data4: 523349985
-    Path: event:/Music/CityMainMusic
-  <FirstCutsceneMusic>k__BackingField:
-    Guid:
-      Data1: -616715179
-      Data2: 1195047767
-      Data3: 1493360053
-      Data4: -1963746662
-    Path: event:/Music/CutsceneMusic
-  <click>k__BackingField:
-    Guid:
-      Data1: 688111017
-      Data2: 1108125831
-      Data3: 1577357230
-      Data4: -1159600685
-    Path: event:/UI/Click
-  <verbclick>k__BackingField:
-    Guid:
-      Data1: 454347073
-      Data2: 1167182299
-      Data3: 1888645533
-      Data4: 519475314
-    Path: event:/UI/VerbClick
 --- !u!1 &346882709625222158
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +466,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 3407053356948428096}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1180092284065547825}
+        m_TargetAssemblyTypeName: ButtonClick, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2639,53 +2474,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4938147769522232476
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8973437663376849848}
-  - component: {fileID: 708244909945289508}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8973437663376849848
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938147769522232476}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6477462616618130605}
-  m_Father: {fileID: 1408712691794768875}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &708244909945289508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938147769522232476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e576e325460a24caeb94e5a30a67f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicVolume: 1
-  SFXVolume: 1
 --- !u!1 &5057160601926143448
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,7 +4059,7 @@ Transform:
   - {fileID: 6386849327266646841}
   - {fileID: 2185402944648616012}
   - {fileID: 3520950028520142580}
-  - {fileID: 8973437663376849848}
+  - {fileID: 5011760998110061492}
   - {fileID: 4299922738533820881}
   - {fileID: 175077684456163159}
   m_Father: {fileID: 0}
@@ -5157,6 +4945,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9f605964d915947b8d9a995a3982e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1388641009736403698
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1408712691794768875}
+    m_Modifications:
+    - target: {fileID: 929568018981154521, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+--- !u!4 &5011760998110061492 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+  m_PrefabInstance: {fileID: 1388641009736403698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3225608935639016053
 PrefabInstance:
   m_ObjectHideFlags: 0

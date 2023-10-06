@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
-using FMODUnity;
 using FMOD.Studio;
-using UnityEditor.SearchService;
 
 public enum GameState
 {
