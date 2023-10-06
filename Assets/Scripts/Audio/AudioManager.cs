@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class AudioManager : MonoBehaviour
     {
         // skip if already exists
         if (_instance) return;
+        if (SceneManager.GetActiveScene().name == "BankLoader") return;
         InitializeInstance(new GameObject(nameof(AudioManager)).AddComponent<AudioManager>());
     }
 
