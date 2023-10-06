@@ -27,6 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fde20eefd64659f48bbcd4b536a1a64f, type: 2}
   - {fileID: 11400000, guid: 4eb57845fb7065a47949b118ab86867d, type: 2}
   - {fileID: 11400000, guid: 986cc2b103a84874ebc7a16125048a16, type: 2}
+  - {fileID: 11400000, guid: e8d47590684ac7b41b7144ae85214d33, type: 2}
   treeSprites:
   - {fileID: 21300000, guid: b1e402e8daf1210449d5e806b9fae0da, type: 3}
   - {fileID: 21300000, guid: f16c3eb1bead583458f6ed213d85d5d6, type: 3}

@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEditor.SearchService;
 
 public enum GameState
 {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject hintPanel;
     [SerializeField] GameObject timerCounter;
     [SerializeField] GameObject tutorialUI;
+    [SerializeField] public DataContainer gameData;
     public TextMeshPro helpText;
     private Timer timer;
     private EventInstance Brakes;
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
     public float timerLength = 7f;
     public static GameManager _instance;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _instance = this;
         if (BuildConstants.isExpo)
@@ -210,14 +212,19 @@ public class GameManager : MonoBehaviour
     {
         if (!AudioManager.IsPlaying())
         {
-            Scene scene = SceneManager.GetActiveScene();
-            if (scene.name == "LV2_Delivery")
+            switch(SceneManager.GetActiveScene().name)
             {
-                AudioManager._instance.InitializeMusic(FMODEvents.instance.CityMainMusic); 
-            }
-            else
-            {
-                AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
+                case "LV1_Delivery":
+                    AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
+                    break;
+                case "LV2_Delivery":
+                    AudioManager._instance.InitializeMusic(FMODEvents.instance.CityMainMusic);
+                    break;
+                case "LVB_Delivery":
+                    AudioManager._instance.InitializeMusic(FMODEvents.instance.oldmainmusic);
+                    break;
+                default:
+                    break;
             }
         }
         Debug.Log($"switched game state to start");
@@ -228,7 +235,7 @@ public class GameManager : MonoBehaviour
     void HandleRunning()
     {
         UnpauseGame();
-        if (BuildConstants.isMobile)
+        if (BuildConstants.isMobile && helpText != null)
         {
             Debug.Log("mobile!");
             
@@ -302,20 +309,36 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
         {
-            if (SceneManager.GetActiveScene().name == "LV2_Delivery")
+            switch (SceneManager.GetActiveScene().name)
             {
-                StartCoroutine(DelayAudio(2.5f, GoodEnding));
-                StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
+                case "LV1_Delivery":
+                    StartCoroutine(DelaySceneLoad(2, "LV1_End"));
+                    break;
+                case "LV2_Delivery":
+                    StartCoroutine(DelayAudio(2.5f, GoodEnding));
+                    StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
+                    break;
+                case "LVB_Delivery":
+                    StartCoroutine(DelaySceneLoad(2, "BackroomsWin"));
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                StartCoroutine(DelaySceneLoad(2, "LV1_End"));
-            }
+
         }
         else
         {
-            StartCoroutine(DelayAudio(1.5f, BadEnding));
-            StartCoroutine(DelaySceneLoad(2, "BadEnd"));
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "LVB_Delivery":
+                    // TODO secret backrooms ending
+                    StartCoroutine(DelaySceneLoad(2, "BackroomsLose"));
+                    break;
+                default:
+                    StartCoroutine(DelayAudio(1.5f, BadEnding));
+                    StartCoroutine(DelaySceneLoad(2, "BadEnd"));
+                    break;
+            }
         }
     }
 
@@ -331,16 +354,22 @@ public class GameManager : MonoBehaviour
         CreateDust();
         Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
-        if (SceneManager.GetActiveScene().name == "LV2_Delivery")
+        switch (SceneManager.GetActiveScene().name)
         {
-            //StartCoroutine(DelayAudio(1.5f, SecretEnding2)); // TODO
-            StartCoroutine(DelaySceneLoad(2, "SecretEnd2"));
+            case "LV1_Delivery":
+                StartCoroutine(DelayAudio(1.5f, SecretEnding));
+                StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
+                break;
+            case "LV2_Delivery":
+                //StartCoroutine(DelayAudio(1.5f, SecretEnding2)); // TODO
+                StartCoroutine(DelaySceneLoad(2, "SecretEnd2"));
+                break;
+            case "LVB_Delivery":
+                StartCoroutine(DelaySceneLoad(2, "BackroomsSecret"));
+                break;
+            default:
+                break;
         }
-        else
-        {
-            StartCoroutine(DelayAudio(1.5f, SecretEnding));
-            StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
-        }    
     }
 
     IEnumerator DelaySceneLoad(float delay, string scene)

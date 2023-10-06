@@ -7,8 +7,7 @@ using FMOD.Studio;
 
 public class HouseObject : MonoBehaviour
 {
-    public GameManager gameManager;
-    [SerializeField] private DataContainer gameData;
+    private DataContainer gameData;
     public Sprite artwork;
     public Person resident;
     public DeliveryItem item;
@@ -16,18 +15,12 @@ public class HouseObject : MonoBehaviour
     private SpriteRenderer personSprite;
 
     [SerializeField] private AudioManager audioManager;
-    private EventInstance Footsteps;
-    private EventInstance Brakes;
-    
-
-    private void Start() {
-        Footsteps = gameManager.GetFootsteps();
-        Brakes = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
-    }
-
+    private EventInstance footsteps;
+    private EventInstance brake;
 
     private void Awake()
     {
+        gameData = GameManager._instance.gameData;
         item = new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1);
         resident = new Person(gameData.personSprites[Random.Range(0, gameData.personSprites.Length)], item);
         artwork = gameData.houseSprites[Random.Range(0, gameData.houseSprites.Length)];
@@ -36,6 +29,8 @@ public class HouseObject : MonoBehaviour
         mText = transform.GetChild(0).gameObject.GetComponent<TextMeshPro>();
         personSprite = transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
         personSprite.sprite = resident.GetArtwork();
+        footsteps = GameManager._instance.GetFootsteps();
+        brake = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
     }
 
     public void SetText(string text)
@@ -59,7 +54,7 @@ public class HouseObject : MonoBehaviour
     {
         BoxCollider2D b = gameObject.GetComponent<BoxCollider2D>();
         b.enabled = false;
-        gameManager.currentHouse = this;
+        GameManager._instance.currentHouse = this;
         StartCoroutine(BrakeAtHouse());
         Debug.Log("Got to a house.");
         
@@ -67,12 +62,12 @@ public class HouseObject : MonoBehaviour
 
     private IEnumerator BrakeAtHouse()
     {
-        Footsteps.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        Brakes.start();
-        gameManager.DisablePlayerMovementInput();
-        gameManager.CreateDust();
+        footsteps.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        brake.start();
+        GameManager._instance.DisablePlayerMovementInput();
+        GameManager._instance.CreateDust();
         yield return new WaitForSecondsRealtime(1f);
-        gameManager.OnGameStateChanged(GameState.Delivery);
+        GameManager._instance.OnGameStateChanged(GameState.Delivery);
     }
 
 }

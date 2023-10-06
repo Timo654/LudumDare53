@@ -12,30 +12,30 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 6c3d86a095740a64384aa36dba2ce79a
   - enabled: 1
-    path: Assets/Scenes/Opening.unity
+    path: Assets/Scenes/Levels/Level1/Opening.unity
     guid: ca857a80ce07db74d872d8ffe69a9b2b
   - enabled: 1
-    path: Assets/Scenes/LV1_Delivery.unity
+    path: Assets/Scenes/Levels/Level1/LV1_Delivery.unity
     guid: 4307f9ed31e7cfb4fa7e83b026373fb5
   - enabled: 1
-    path: Assets/Scenes/LV1_End.unity
+    path: Assets/Scenes/Levels/Level1/LV1_End.unity
     guid: 47e689e40ae94e04b9fa84287ffc3455
   - enabled: 1
-    path: Assets/Scenes/LV2_Delivery.unity
+    path: Assets/Scenes/Levels/Level2/LV2_Delivery.unity
     guid: 3285bb8c156745849ab71e2101ae07a0
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: db74738ce022b484ca701a1882fc06d9
   - enabled: 1
-    path: Assets/Scenes/SecretEnd.unity
+    path: Assets/Scenes/Levels/Level1/SecretEnd.unity
     guid: 8fb551c804d815349a2042b69ae8d5c2
   - enabled: 1
-    path: Assets/Scenes/SecretEnd2.unity
+    path: Assets/Scenes/Levels/Level2/SecretEnd2.unity
     guid: b968c8b4c9665484b8d3798aa27a4898
   - enabled: 1
-    path: Assets/Scenes/GoodEnd.unity
+    path: Assets/Scenes/Levels/Level2/GoodEnd.unity
     guid: 787b542b3061ff94585cd1134bc16ac3
   - enabled: 1
-    path: Assets/Scenes/BadEnd.unity
+    path: Assets/Scenes/Levels/BadEnd.unity
     guid: 16539bf018253ff4bbbc3a8f65e9da24
   m_configObjects: {}

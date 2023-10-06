@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class HouseController : MonoBehaviour
 {
-    [SerializeField] public GameManager gameManager;
     [SerializeField] public uint houseCount;
-    [SerializeField] public DataContainer gameData;
+    private DataContainer gameData;
     public int houseDistMin = 20;
     public int houseDistMax = 40;
     public float houseY = -1.91f;
@@ -16,8 +15,9 @@ public class HouseController : MonoBehaviour
     public GameObject endTrigger;
     private SpriteRenderer tree;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
+        gameData = GameManager._instance.gameData;
         float prev_x = 0;
         float x;
         float tree_loc;
@@ -25,7 +25,7 @@ public class HouseController : MonoBehaviour
         for (var i= 0; i < houseCount; i++)
         {
             x = prev_x + Random.Range(houseDistMin, houseDistMax);
-            if (gameData.treeSprites.Length > 0)
+            if (gameData.treeSprites.Length > 0 && treePrefab != null)
             {
                 tree_loc = Random.Range(prev_x + 4f, x - 4f);
 
@@ -45,15 +45,14 @@ public class HouseController : MonoBehaviour
             prev_x = x;
             GameObject obj = Instantiate(housePrefab, new Vector3(x, houseY, 0), Quaternion.identity);
             HouseObject house = obj.GetComponent<HouseObject>();
-            house.gameManager = gameManager;
-            gameManager.AddToInventory(house.item);
+            GameManager._instance.AddToInventory(house.item);
         }
 
         float endLocation = Random.Range(prev_x + 20f, prev_x + 60f);
-        Instantiate(treePrefab, new Vector3(Random.Range(prev_x + 10f, endLocation - 10f), Random.Range(-3.85f, -2f), 0), Quaternion.identity).GetComponent<SpriteRenderer>(); // random final tree
+        if (treePrefab != null) Instantiate(treePrefab, new Vector3(Random.Range(prev_x + 10f, endLocation - 10f), Random.Range(-3.85f, -2f), 0), Quaternion.identity).GetComponent<SpriteRenderer>(); // random final tree
         endTrigger.transform.position = new Vector3(endLocation, 0.4f, 0);
-        gameManager.AddToInventory(new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1)); // add a single extra item
-        gameManager.ShuffleInventory();
+        GameManager._instance.AddToInventory(new DeliveryItem(gameData.Items[Random.Range(0, gameData.Items.Length)], 1)); // add a single extra item
+        GameManager._instance.ShuffleInventory();
     }
 
 }
