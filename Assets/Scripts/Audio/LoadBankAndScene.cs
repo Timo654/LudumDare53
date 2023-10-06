@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class LoadBankAndScene : MonoBehaviour
 {
-    [SerializeField] private GameObject menuObject;
-    [SerializeField] private GameObject audioManagerObject;
     [FMODUnity.BankRef]
     public List<string> banks;
 
@@ -32,7 +30,6 @@ public class LoadBankAndScene : MonoBehaviour
         {
             yield return null;
         }
-        audioManagerObject.SetActive(true);
-        menuObject.GetComponent<ClickToStartScene>().enabled = true;
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }
