@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 using FMOD.Studio;
+using System;
 
 public enum GameState
 {
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
     bool isFirstTime;
     public float timerLength = 7f;
     public static GameManager _instance;
+    const string sid = "00000000-0000-0000-0000-000000000000";
+    static readonly Guid nullGuid = new Guid(sid);
     // Start is called before the first frame update
     void Awake()
     {
@@ -62,9 +65,9 @@ public class GameManager : MonoBehaviour
         Box = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBox);
         counterText = timerCounter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         playerWalk = player.GetComponent<Player_Walk>();
-        if (gameData.badEndMusic.Path.Length > 0) BadEnding = AudioManager._instance.CreateInstance(gameData.badEndMusic);
-        if (gameData.goodEndMusic.Path.Length > 0) GoodEnding = AudioManager._instance.CreateInstance(gameData.goodEndMusic);
-        if (gameData.secretEndMusic.Path.Length > 0) SecretEnding = AudioManager._instance.CreateInstance(gameData.secretEndMusic);
+        if (gameData.badEndMusic.Guid != nullGuid) BadEnding = AudioManager._instance.CreateInstance(gameData.badEndMusic);
+        if (gameData.goodEndMusic.Guid != nullGuid) GoodEnding = AudioManager._instance.CreateInstance(gameData.goodEndMusic);
+        if (gameData.secretEndMusic.Guid != nullGuid) SecretEnding = AudioManager._instance.CreateInstance(gameData.secretEndMusic);
         OnGameStateChanged(GameState.Start);
     }
 
@@ -112,7 +115,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < inventory.Count; i++)
         {
             DeliveryItem temp = inventory[i];
-            int randomIndex = Random.Range(i, inventory.Count);
+            int randomIndex = UnityEngine.Random.Range(i, inventory.Count);
             inventory[i] = inventory[randomIndex];
             inventory[randomIndex] = temp;
         }
@@ -208,7 +211,7 @@ public class GameManager : MonoBehaviour
     {
         if (!AudioManager.IsPlaying())
         {
-            if (gameData.gameplayMusic.Path.Length > 0) AudioManager._instance.InitializeMusic(gameData.gameplayMusic);      
+            if (gameData.gameplayMusic.Guid != nullGuid) AudioManager._instance.InitializeMusic(gameData.gameplayMusic);      
         }
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
