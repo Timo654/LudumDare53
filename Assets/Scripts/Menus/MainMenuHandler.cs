@@ -43,9 +43,13 @@ public class MainMenuHandler : MonoBehaviour
         menu.Disable();
     }
 
-    void Awake() 
+    void Awake()
     {
         playerControls = new PlayerControls();
+    }
+
+    void Start()
+    {
         if (BuildConstants.isWebGL || BuildConstants.isMobile || BuildConstants.isExpo)
         {
             exitButton.SetActive(false);
