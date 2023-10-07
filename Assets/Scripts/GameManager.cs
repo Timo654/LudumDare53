@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     private EventInstance BadEnding;
     private EventInstance GoodEnding;
     private EventInstance SecretEnding;
-    private EventInstance SecretEnding2;
     public HouseObject currentHouse;
     private GameState _currentState;
     public bool isInputDisabled = false;
@@ -60,14 +59,13 @@ public class GameManager : MonoBehaviour
         Brakes = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
         deliveryController = GetComponent<DeliveryController>();
         EVRef = EventSystem.current; // get the current event system
-        OnGameStateChanged(GameState.Start);
         Box = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBox);
         counterText = timerCounter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         playerWalk = player.GetComponent<Player_Walk>();
-        BadEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.BadEndingMusic);
-        GoodEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.GoodEndingMusic);
-        SecretEnding = AudioManager._instance.CreateInstance(FMODEvents.instance.SecretEndingMusic);
-        SecretEnding2 = AudioManager._instance.CreateInstance(FMODEvents.instance.SecretEndingMusic); // TODO
+        if (gameData.badEndMusic.Path.Length > 0) BadEnding = AudioManager._instance.CreateInstance(gameData.badEndMusic);
+        if (gameData.goodEndMusic.Path.Length > 0) GoodEnding = AudioManager._instance.CreateInstance(gameData.goodEndMusic);
+        if (gameData.secretEndMusic.Path.Length > 0) SecretEnding = AudioManager._instance.CreateInstance(gameData.secretEndMusic);
+        OnGameStateChanged(GameState.Start);
     }
 
     private void OnEnable()
@@ -210,20 +208,7 @@ public class GameManager : MonoBehaviour
     {
         if (!AudioManager.IsPlaying())
         {
-            switch(SceneManager.GetActiveScene().name)
-            {
-                case "LV1_Delivery":
-                    AudioManager._instance.InitializeMusic(FMODEvents.instance.mainmusic);
-                    break;
-                case "LV2_Delivery":
-                    AudioManager._instance.InitializeMusic(FMODEvents.instance.CityMainMusic);
-                    break;
-                case "LVB_Delivery":
-                    AudioManager._instance.InitializeMusic(FMODEvents.instance.oldmainmusic);
-                    break;
-                default:
-                    break;
-            }
+            if (gameData.gameplayMusic.Path.Length > 0) AudioManager._instance.InitializeMusic(gameData.gameplayMusic);      
         }
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
@@ -307,36 +292,14 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
         if (_currentHappiness > 2900)
         {
-            switch (SceneManager.GetActiveScene().name)
-            {
-                case "LV1_Delivery":
-                    StartCoroutine(DelaySceneLoad(2, "LV1_End"));
-                    break;
-                case "LV2_Delivery":
-                    StartCoroutine(DelayAudio(2.5f, GoodEnding));
-                    StartCoroutine(DelaySceneLoad(2, "GoodEnd"));
-                    break;
-                case "LVB_Delivery":
-                    StartCoroutine(DelaySceneLoad(2, "BackroomsWin"));
-                    break;
-                default:
-                    break;
-            }
+            if (GoodEnding.isValid()) StartCoroutine(DelayAudio(2.5f, GoodEnding));
+            StartCoroutine(DelaySceneLoad(2, gameData.goodEndScene));              
 
         }
         else
         {
-            switch (SceneManager.GetActiveScene().name)
-            {
-                case "LVB_Delivery":
-                    // TODO secret backrooms ending
-                    StartCoroutine(DelaySceneLoad(2, "BackroomsLose"));
-                    break;
-                default:
-                    StartCoroutine(DelayAudio(1.5f, BadEnding));
-                    StartCoroutine(DelaySceneLoad(2, "BadEnd"));
-                    break;
-            }
+            if (BadEnding.isValid()) StartCoroutine(DelayAudio(2.5f, BadEnding));
+            StartCoroutine(DelaySceneLoad(2, gameData.badEndScene));         
         }
     }
 
@@ -352,22 +315,8 @@ public class GameManager : MonoBehaviour
         CreateDust();
         Brakes.start();
         PlayerPrefs.SetInt("Happiness", _currentHappiness);
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "LV1_Delivery":
-                StartCoroutine(DelayAudio(1.5f, SecretEnding));
-                StartCoroutine(DelaySceneLoad(2, "SecretEnd"));
-                break;
-            case "LV2_Delivery":
-                //StartCoroutine(DelayAudio(1.5f, SecretEnding2)); // TODO
-                StartCoroutine(DelaySceneLoad(2, "SecretEnd2"));
-                break;
-            case "LVB_Delivery":
-                StartCoroutine(DelaySceneLoad(2, "BackroomsSecret"));
-                break;
-            default:
-                break;
-        }
+        if (SecretEnding.isValid()) StartCoroutine(DelayAudio(2.5f, SecretEnding));
+        StartCoroutine(DelaySceneLoad(2, gameData.secretEndScene));
     }
 
     IEnumerator DelaySceneLoad(float delay, string scene)

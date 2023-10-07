@@ -18,10 +18,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dff8dabc329fd6d4e8c982f4d645b056, type: 3}
   - {fileID: 21300000, guid: 6d14ba8867425ca42b0a9f0ae4eb8c81, type: 3}
   - {fileID: 21300000, guid: 99e367922890ddc4aa24bcb69ba87819, type: 3}
-  personNames:
-  - Bob
-  - John
-  - Greg
   Items:
   - {fileID: 11400000, guid: 6000c1c31ca71a34f9eba7f7cf62c0b1, type: 2}
   - {fileID: 11400000, guid: fde20eefd64659f48bbcd4b536a1a64f, type: 2}
@@ -32,3 +28,34 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b1e402e8daf1210449d5e806b9fae0da, type: 3}
   - {fileID: 21300000, guid: f16c3eb1bead583458f6ed213d85d5d6, type: 3}
   cloudSprites: []
+  goodEndScene: GoodEnd
+  badEndScene: BadEnd
+  secretEndScene: SecretEnd2
+  gameplayMusic:
+    Guid:
+      Data1: -893136637
+      Data2: 1161585610
+      Data3: 741489328
+      Data4: 523349985
+    Path: event:/Music/CityMainMusic
+  badEndMusic:
+    Guid:
+      Data1: -1004656288
+      Data2: 1270246334
+      Data3: -33001043
+      Data4: -19926581
+    Path: event:/Music/BadEnding
+  goodEndMusic:
+    Guid:
+      Data1: 633388441
+      Data2: 1128512174
+      Data3: 1734105276
+      Data4: -1424685326
+    Path: event:/Music/GoodEnding
+  secretEndMusic:
+    Guid:
+      Data1: 1445674080
+      Data2: 1288067854
+      Data3: 2010618544
+      Data4: -1421756669
+    Path: event:/Music/SecretEnding

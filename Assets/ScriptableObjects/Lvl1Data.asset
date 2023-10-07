@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5357d0431bb5c04ba6bbb4861c8ada9, type: 3}
-  m_Name: DataContainer
+  m_Name: Lvl1Data
   m_EditorClassIdentifier: 
   houseSprites:
   - {fileID: 21300000, guid: 9f7754026f681f2478a6605eb16864fe, type: 3}
@@ -20,10 +20,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 97eed1e71949f644e82e9c5264e0b143, type: 3}
   - {fileID: 21300000, guid: 65fffe2d1ae3e424eb94eb1466d558d5, type: 3}
   - {fileID: 21300000, guid: 1ac05e06ad0348e4484dadfa834656da, type: 3}
-  personNames:
-  - Bob
-  - John
-  - Greg
   Items:
   - {fileID: 11400000, guid: ff8d0d8316fa7ba4f9a082fb66c99769, type: 2}
   - {fileID: 11400000, guid: f72689626686b58429f965758228b0eb, type: 2}
@@ -41,3 +37,34 @@ MonoBehaviour:
   - {fileID: -1159427875, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
   - {fileID: -80469845, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
   - {fileID: -2080885540, guid: 8f8e6f3d45b0baf45975bf51623aa2ba, type: 3}
+  goodEndScene: LV1_End
+  badEndScene: BadEnd
+  secretEndScene: SecretEnd
+  gameplayMusic:
+    Guid:
+      Data1: 359338245
+      Data2: 1205906289
+      Data3: -282994534
+      Data4: -2107208129
+    Path: event:/Music/MainMusic
+  badEndMusic:
+    Guid:
+      Data1: -1004656288
+      Data2: 1270246334
+      Data3: -33001043
+      Data4: -19926581
+    Path: event:/Music/BadEnding
+  goodEndMusic:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  secretEndMusic:
+    Guid:
+      Data1: 1445674080
+      Data2: 1288067854
+      Data3: 2010618544
+      Data4: -1421756669
+    Path: event:/Music/SecretEnding
