@@ -3431,7 +3431,6 @@ GameObject:
   - component: {fileID: 3670495903863551731}
   - component: {fileID: 337873571704977357}
   - component: {fileID: 2301381675508399315}
-  - component: {fileID: 5405079127916723622}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3512,21 +3511,6 @@ MonoBehaviour:
   housePrefab: {fileID: 8438299666576120179, guid: 5794770c6acdd424c81d59aa79e4d0a0, type: 3}
   treePrefab: {fileID: 140964522321585310, guid: 329ac407b2740eb4bb0aa6fb46be36e2, type: 3}
   endTrigger: {fileID: 0}
---- !u!114 &5405079127916723622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5472454281439932791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 118bb24437707f14caf38b226c47b149, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObjects: []
-  objectToPool: {fileID: 5701700680306562343, guid: f91702cc91d375f4e906597787cec2d5, type: 3}
-  amountToPool: 40
 --- !u!1 &5599841941449055675
 GameObject:
   m_ObjectHideFlags: 0
