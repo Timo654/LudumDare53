@@ -1,9 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,9 +12,11 @@ public class PauseMenu : MonoBehaviour
     private PlayerControls playerControls;
     private InputAction menu;
     private EventSystem EVRef;
+    [SerializeField] Button helpMenuBackButton;
+    [SerializeField] Button optionsMenuBackButton;
     [SerializeField] private GameObject selectedUIElement;
     [SerializeField] private GameObject exitButton; // to disable in webgl
-    [SerializeField] private GameObject TouchUI; 
+    [SerializeField] private GameObject TouchUI;
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -54,6 +56,16 @@ public class PauseMenu : MonoBehaviour
             Debug.Log("Game already paused, not able to pause again.");
             return;
         }
+        if (helpMenuBackButton.IsActive())
+        {
+            helpMenuBackButton.onClick.Invoke();
+            return;
+        }
+        else if (optionsMenuBackButton.IsActive())
+        {
+            optionsMenuBackButton.onClick.Invoke();
+            return;
+        }
         GameIsPaused = !GameIsPaused;
         if (GameIsPaused)
         {
@@ -61,17 +73,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            Transform help = pauseMenuUI.transform.Find("HelpMenu");
-            if (help.gameObject.activeSelf)
-            {
-                GameIsPaused = !GameIsPaused; // dont actually unpause game
-                help.gameObject.SetActive(false);
-                pauseMenuUI.transform.Find("PauseMenuButtons").gameObject.SetActive(true);           
-            }
-            else
-            {
-                DeactivateMenu();
-            }
+            DeactivateMenu();
         }
     }
 
