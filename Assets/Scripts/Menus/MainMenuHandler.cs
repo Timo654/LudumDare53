@@ -2,6 +2,8 @@ using UnityEngine;
 using FMOD.Studio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject selectedUIElement;
     [SerializeField] private GameObject backroomsPlayBtn;
+    private PlayerControls playerControls;
+    private InputAction menu;
+    [SerializeField] Button optionsMenuBackButton;
     private EventInstance VerbClick;
     bool pressed = false;
     bool inMenu = false;
@@ -25,17 +30,35 @@ public class MainMenuHandler : MonoBehaviour
         LevelChangerScript._instance.FadeToLevel("Credits");
     }
 
-    void Start() 
+    private void OnEnable()
     {
+        menu = playerControls.Menu.Escape;
+        menu.Enable();
+        menu.performed += OnPauseButton;
+        anyKeyText.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        menu.Disable();
+    }
+
+    void Awake() 
+    {
+        playerControls = new PlayerControls();
         if (BuildConstants.isWebGL || BuildConstants.isMobile || BuildConstants.isExpo)
         {
             exitButton.SetActive(false);
         }
         VerbClick = AudioManager._instance.CreateInstance(FMODEvents.instance.verbclick);
     }
-    void OnEnable()
+
+    public void OnPauseButton(InputAction.CallbackContext context)
     {
-        anyKeyText.SetActive(true);
+        if (optionsMenuBackButton.IsActive())
+        {
+            optionsMenuBackButton.onClick.Invoke();
+        }
     }
 
     public void QuitGame()
@@ -79,7 +102,7 @@ public class MainMenuHandler : MonoBehaviour
         bool mobileTouch = false;
         if (Input.touchCount > 0)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Began) mobileTouch = true;
+            if (Input.GetTouch(0).phase == UnityEngine.TouchPhase.Began) mobileTouch = true;
         }
         if ((Input.anyKeyDown || mobileTouch) && !pressed)
         {
