@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
-using TMPro;
 using FMOD.Studio;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -15,6 +15,13 @@ public enum GameState
     Win,
     Lose,
     SecretWin
+}
+
+public enum EndingType
+{
+    Bad,
+    Good,
+    Secret
 }
 
 public class GameManager : MonoBehaviour
@@ -56,7 +63,7 @@ public class GameManager : MonoBehaviour
             isFirstTime = true;
         }
         else
-        {     
+        {
             isFirstTime = PlayerPrefs.GetInt("isFirstTime", 1) == 1;
         }
         Brakes = AudioManager._instance.CreateInstance(FMODEvents.instance.playerBrakes);
@@ -88,7 +95,8 @@ public class GameManager : MonoBehaviour
         timer.UpdateGUI -= UpdateTimerText;
     }
 
-    void UpdateTimerText(string time) {
+    void UpdateTimerText(string time)
+    {
         counterText.SetText(time);
     }
 
@@ -100,10 +108,10 @@ public class GameManager : MonoBehaviour
         deliveryPanel.SetActive(false);
         if (currentHouse != null)
         {
-                Debug.Log("wrong item.......");
-                scoreToAdd = -200;
-                StartCoroutine(currentHouse.SetTemporaryText(":("));
-            }
+            Debug.Log("wrong item.......");
+            scoreToAdd = -200;
+            StartCoroutine(currentHouse.SetTemporaryText(":("));
+        }
         AddScore(scoreToAdd);
         Box.start();
         EnablePlayerMovementInput();
@@ -140,7 +148,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (BuildConstants.isExpo || BuildConstants.isDebug) {
+        if (BuildConstants.isExpo || BuildConstants.isDebug)
+        {
             if (Input.GetKeyDown(KeyCode.F6))
             {
                 Time.timeScale = 1f;
@@ -159,11 +168,11 @@ public class GameManager : MonoBehaviour
                 AudioManager._instance.FadeOutMusic();
                 SceneManager.LoadScene("MainMenu");
             }
-        }    
+        }
     }
 
     public EventInstance GetFootsteps()
-    { 
+    {
         return playerWalk.playerFootsteps;
     }
 
@@ -209,9 +218,10 @@ public class GameManager : MonoBehaviour
 
     void HandleStart()
     {
+        UnpauseGame(); // just in case
         if (!AudioManager.IsPlaying())
         {
-            if (gameData.gameplayMusic.Guid != nullGuid) AudioManager._instance.InitializeMusic(gameData.gameplayMusic);      
+            if (gameData.gameplayMusic.Guid != nullGuid) AudioManager._instance.InitializeMusic(gameData.gameplayMusic);
         }
         Debug.Log($"switched game state to start");
         PlayerPrefs.SetInt("Happiness", 0);
@@ -220,11 +230,10 @@ public class GameManager : MonoBehaviour
 
     void HandleRunning()
     {
-        UnpauseGame();
         if (BuildConstants.isMobile && helpText != null)
         {
             Debug.Log("mobile!");
-            
+
             helpText.text = "Move by tapping the sides of your screen. \r\nGo make those deliveries!";
         }
         MobileUI.SetActive(true);
@@ -233,7 +242,6 @@ public class GameManager : MonoBehaviour
     void HandleDelivery()
     {
         DisablePlayerMovementInput();
-        //PauseGame();
         Box.start();
         MobileUI.SetActive(false);
         deliveryController.UpdateItems();
@@ -244,7 +252,7 @@ public class GameManager : MonoBehaviour
             tutorialUI.SetActive(true);
             _timerLength = 60f;
         }
-        hintPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();
+        hintPanel.GetComponent<TextMeshProUGUI>().text = currentHouse.resident.GetDesiredItem().GetRandomLine();
         EVRef.SetSelectedGameObject(deliveryPanel.transform.GetChild(0).transform.GetChild(0)
             .gameObject); // set current selected button
         timerCounter.SetActive(true);
@@ -296,13 +304,13 @@ public class GameManager : MonoBehaviour
         if (_currentHappiness > 2900)
         {
             if (GoodEnding.isValid()) StartCoroutine(DelayAudio(2.5f, GoodEnding));
-            StartCoroutine(DelaySceneLoad(2, gameData.goodEndScene));              
+            StartCoroutine(DelaySceneLoad(2, gameData.goodEndScene));
 
         }
         else
         {
             if (BadEnding.isValid()) StartCoroutine(DelayAudio(2.5f, BadEnding));
-            StartCoroutine(DelaySceneLoad(2, gameData.badEndScene));         
+            StartCoroutine(DelaySceneLoad(2, gameData.badEndScene));
         }
     }
 
@@ -336,11 +344,6 @@ public class GameManager : MonoBehaviour
     public int GetHappiness()
     {
         return _currentHappiness;
-    }
-
-    public void PauseGame()
-    {
-        Time.timeScale = 0f;
     }
 
     public void UnpauseGame()

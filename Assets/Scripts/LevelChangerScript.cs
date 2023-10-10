@@ -19,7 +19,7 @@ public class LevelChangerScript : MonoBehaviour
         animator.SetTrigger("FadeOut");
     }
 
-    public void OnFadeComplete ()
+    public void OnFadeComplete()
     {
         AudioManager._instance.StopSFX();
         SceneManager.LoadScene(levelToLoad);

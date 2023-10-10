@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 // based on https://stackoverflow.com/questions/38921035/how-to-animate-2d-clouds-in-unity3d
 
 public class CloudManagerScript : MonoBehaviour
@@ -53,7 +53,7 @@ public class CloudManagerScript : MonoBehaviour
             return;
         }
         float camWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        for (int i= 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             float spawnPos = Camera.main.transform.position.x - camWidth + (i * 2);
             GameObject cloud = ObjectPool.SharedInstance.GetPooledObject();

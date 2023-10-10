@@ -21,7 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f38f6b595ef024a4d86668279bf6eb96, type: 2}
   - {fileID: 11400000, guid: 27a0edd7981bf184da7aee887e65b8ee, type: 2}
   - {fileID: 11400000, guid: abbec1a17f790364badc3bb6e9a6da06, type: 2}
-  treeSprites: []
+  treeSprites:
+  - {fileID: 21300000, guid: 94550c69596c6784a95464cb2239f87d, type: 3}
   cloudSprites: []
   goodEndScene: BackroomsWin
   badEndScene: BackroomsLose

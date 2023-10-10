@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
 using System;
+using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
@@ -34,7 +31,7 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         if (!counting) return;
-        
+
         time -= Time.unscaledDeltaTime;
         if (time <= 0f) EndTimer(true);
         UpdateGUI.Invoke(GetTime());

@@ -1,9 +1,9 @@
-using UnityEngine;
 using FMOD.Studio;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -82,7 +82,7 @@ public class MainMenuHandler : MonoBehaviour
         }
     }
 
-        void Update()
+    void Update()
     {
         if (BuildConstants.isExpo || BuildConstants.isDebug)
         {
@@ -120,19 +120,20 @@ public class MainMenuHandler : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().Play("Menu");
         }
-        else if (Input.GetKeyDown(KeyCode.B) && inMenu && !isCapsLock) { // TODO - alternative way to trigger
-                if (inBackrooms)
-                {
-                    LeavePressed();
-                }
-                else
-                {
-                    mainMenu.SetActive(false);
-                    EventSystem.current.SetSelectedGameObject(backroomsPlayBtn);
-                    gameObject.GetComponent<Animator>().Play("To_MenuB");
-                    inBackrooms = true;
-                }       
-                
+        else if (Input.GetKeyDown(KeyCode.B) && inMenu && !isCapsLock)
+        { // TODO - alternative way to trigger
+            if (inBackrooms)
+            {
+                LeavePressed();
+            }
+            else
+            {
+                mainMenu.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(backroomsPlayBtn);
+                gameObject.GetComponent<Animator>().Play("To_MenuB");
+                inBackrooms = true;
+            }
+
         }
     }
 
@@ -153,8 +154,8 @@ public class MainMenuHandler : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(selectedUIElement);
         if (!inMenu)
         {
-            inMenu = true;          
+            inMenu = true;
             AudioManager._instance.InitializeMusic(FMODEvents.instance.menumusic);
-        }      
+        }
     }
 }

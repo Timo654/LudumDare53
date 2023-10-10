@@ -324,6 +324,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &968369229
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 929568018981154521, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253296148092627270, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9da2c1a93c1c4b8458af91c274e7a60e, type: 3}
 --- !u!1 &1058615866
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,8 +415,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 193.79175, y: 0}
-  m_SizeDelta: {x: 313.1256, y: 449.9551}
+  m_AnchoredPosition: {x: 230, y: 0}
+  m_SizeDelta: {x: 411.1088, y: 449.9551}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058615868
 MonoBehaviour:
@@ -381,8 +438,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Timo Jairus\n\n\n\n\n\n\nEllis Donnik\n\n\n\n\n\n\nTimur Nizamov\n\n\n\n\n\nketrub\njason098\n\n\n\nMi-nk\n\n\n\n\nUT
-    M\xE4nguj\xE4mm 2023\n\n\nDid you find all the endings?"
+  m_text: "Timo Jairus\n\n\n\n\n\n\nEllis Donnik\n\n\n\n\n\n\nTimur Nizamov\n\n\n\n\n\nketrub\njason098\n\n\n\nMi-nk\n\n\nFMOD
+    Studio by Firelight Technologies Pty Ltd.\n\n\nUT M\xE4nguj\xE4mm 2023\n\n\nDid
+    you find all the endings?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
   m_sharedMaterial: {fileID: -4870790103433255552, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
@@ -714,10 +772,12 @@ MonoBehaviour:
 
 
 
+    Audio Engine
+
+
 
 
     Made for
-
 
 
 
@@ -1198,3 +1258,4 @@ SceneRoots:
   - {fileID: 849718962}
   - {fileID: 1892271250}
   - {fileID: 1617850417}
+  - {fileID: 968369229}

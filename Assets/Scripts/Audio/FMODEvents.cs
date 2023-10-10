@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using FMODUnity;
+using UnityEngine;
 
 public class FMODEvents : MonoBehaviour
 {
     [field: Header("SFX")]
-    [field: SerializeField] public EventReference playerFootsteps {get; private set;}
-    [field: SerializeField] public EventReference playerBrakes {get; private set;}
-    [field: SerializeField] public EventReference playerBox {get; private set;}
-    [field: SerializeField] public EventReference playerSigh {get; private set;}
-    [field: SerializeField] public EventReference crowFlySound {get; private set;}
-    [field: SerializeField] public EventReference crowWingAngerSound {get; private set;}
-    [field: SerializeField] public EventReference tickingSound {get; private set;}
-    [field: SerializeField] public EventReference listreadingSound {get; private set;}
-    
+    [field: SerializeField] public EventReference playerFootsteps { get; private set; }
+    [field: SerializeField] public EventReference playerBrakes { get; private set; }
+    [field: SerializeField] public EventReference playerBox { get; private set; }
+    [field: SerializeField] public EventReference playerSigh { get; private set; }
+    [field: SerializeField] public EventReference crowFlySound { get; private set; }
+    [field: SerializeField] public EventReference crowWingAngerSound { get; private set; }
+    [field: SerializeField] public EventReference tickingSound { get; private set; }
+    [field: SerializeField] public EventReference listreadingSound { get; private set; }
+
     [field: Header("Music")]
     [field: SerializeField] public EventReference mainmusic { get; private set; }
     [field: SerializeField] public EventReference oldmainmusic { get; private set; }
@@ -25,16 +23,18 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference SecretEndingMusic { get; private set; }
     [field: SerializeField] public EventReference CityMainMusic { get; private set; }
     [field: SerializeField] public EventReference FirstCutsceneMusic { get; private set; }
-    
+
 
     [field: Header("UI")]
     [field: SerializeField] public EventReference click { get; private set; }
     [field: SerializeField] public EventReference verbclick { get; private set; }
-    
-    public static FMODEvents instance {get; private set;}
 
-    private void Awake() {
-        if (instance != null) {
+    public static FMODEvents instance { get; private set; }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
             return;
         }
         instance = this;

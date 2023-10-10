@@ -5,7 +5,7 @@ public class Person
     public Sprite _artwork;
     public DeliveryItem _desiredItem;
 
-    public Person(Sprite artwork, DeliveryItem desiredItem)        
+    public Person(Sprite artwork, DeliveryItem desiredItem)
     {
         _artwork = artwork;
         _desiredItem = desiredItem;

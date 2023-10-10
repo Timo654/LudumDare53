@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using FMODUnity;
-using FMOD.Studio;
 
 public class Credits : MonoBehaviour
 {
     private PlayerControls playerControls;
     private InputAction escape;
     private InputAction interact;
-
-    private EventInstance creditMusicEventInstance;
 
     private void Awake()
     {
@@ -44,7 +37,6 @@ public class Credits : MonoBehaviour
         AudioManager._instance.InitializeMusic(FMODEvents.instance.creditmusic);
     }
 
-    // Start is called before the first frame update
     public void OnCreditsEnd()
     {
         LevelChangerScript._instance.FadeToLevel("MainMenu");

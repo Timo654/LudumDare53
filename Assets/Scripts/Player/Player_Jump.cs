@@ -12,21 +12,21 @@ public class Player_Jump : MonoBehaviour
     [HideInInspector] public Vector2 velocity;
     private PlayerControls playerControls;
     private InputAction jump;
-
+    [SerializeField] bool jumpEnabled = false;
 
     [Header("Jumping Stats")]
-    [SerializeField, Range(2f, 5.5f)] [Tooltip("Maximum jump height")] public float jumpHeight = 7.3f;
-    [SerializeField, Range(0.2f, 1.25f)] [Tooltip("How long it takes to reach that height before coming back down")] public float timeToJumpApex;
-    [SerializeField, Range(0f, 5f)] [Tooltip("Gravity multiplier to apply when going up")] public float upwardMovementMultiplier = 1f;
-    [SerializeField, Range(1f, 10f)] [Tooltip("Gravity multiplier to apply when coming down")] public float downwardMovementMultiplier = 6.17f;
-    [SerializeField, Range(0, 1)] [Tooltip("How many times can you jump in the air?")] public int maxAirJumps = 0;
+    [SerializeField, Range(2f, 5.5f)][Tooltip("Maximum jump height")] public float jumpHeight = 7.3f;
+    [SerializeField, Range(0.2f, 1.25f)][Tooltip("How long it takes to reach that height before coming back down")] public float timeToJumpApex;
+    [SerializeField, Range(0f, 5f)][Tooltip("Gravity multiplier to apply when going up")] public float upwardMovementMultiplier = 1f;
+    [SerializeField, Range(1f, 10f)][Tooltip("Gravity multiplier to apply when coming down")] public float downwardMovementMultiplier = 6.17f;
+    [SerializeField, Range(0, 1)][Tooltip("How many times can you jump in the air?")] public int maxAirJumps = 0;
 
     [Header("Options")]
     [Tooltip("Should the character drop when you let go of jump?")] public bool variablejumpHeight;
-    [SerializeField, Range(1f, 10f)] [Tooltip("Gravity multiplier when you let go of jump")] public float jumpCutOff;
-    [SerializeField] [Tooltip("The fastest speed the character can fall")] public float speedLimit;
-    [SerializeField, Range(0f, 0.3f)] [Tooltip("How long should coyote time last?")] public float coyoteTime = 0.15f;
-    [SerializeField, Range(0f, 0.3f)] [Tooltip("How far from ground should we cache your jump?")] public float jumpBuffer = 0.15f;
+    [SerializeField, Range(1f, 10f)][Tooltip("Gravity multiplier when you let go of jump")] public float jumpCutOff;
+    [SerializeField][Tooltip("The fastest speed the character can fall")] public float speedLimit;
+    [SerializeField, Range(0f, 0.3f)][Tooltip("How long should coyote time last?")] public float coyoteTime = 0.15f;
+    [SerializeField, Range(0f, 0.3f)][Tooltip("How far from ground should we cache your jump?")] public float jumpBuffer = 0.15f;
     [SerializeField] private Animator playerAnimator;
     [Header("Calculations")]
     public float jumpSpeed;
@@ -45,7 +45,6 @@ public class Player_Jump : MonoBehaviour
     void Awake()
     {
         //Find the character's Rigidbody and ground detection
-
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Player_GroundDetection>();
         defaultGravityScale = 1f;
@@ -55,14 +54,17 @@ public class Player_Jump : MonoBehaviour
     private void OnEnable()
     {
         // Enable controls stuff
-        /*jump = playerControls.Player.Jump;
-        jump.started += OnJump;
-        jump.canceled += OnJump;
-        jump.Enable();*/
+        if (jumpEnabled)
+        {
+            jump = playerControls.Player.Jump;
+            jump.started += OnJump;
+            jump.canceled += OnJump;
+            jump.Enable();
+        }
     }
     private void OnDisable()
     {
-        //jump.Disable();
+        if (jumpEnabled) jump.Disable();
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -70,7 +72,8 @@ public class Player_Jump : MonoBehaviour
         //This function is called when one of the jump buttons (like space or the A button) is pressed.
         //When we press the jump button, tell the script that we desire a jump.
         //Also, use the started and canceled contexts to know if we're currently holding the button
-        if (!currentlyJumping && !PauseMenu.GameIsPaused) {
+        if (!currentlyJumping && !PauseMenu.GameIsPaused)
+        {
             if (context.started)
             {
                 desiredJump = true;
@@ -87,7 +90,7 @@ public class Player_Jump : MonoBehaviour
     void Update()
     {
         setPhysics();
-
+        if (jumpEnabled) playerAnimator.SetBool("Jumping", currentlyJumping);
         //Check if we're on ground
         onGround = ground.GetOnGround();
 
@@ -149,7 +152,7 @@ public class Player_Jump : MonoBehaviour
 
     private void calculateGravity()
     {
-        //We change the character's gravity based on her Y direction
+        //We change the character's gravity based on their Y direction
 
         //If going up...
         if (body.velocity.y > 0.01f)

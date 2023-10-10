@@ -54,8 +54,8 @@ MonoBehaviour:
     Path: event:/Music/GoodEnding
   secretEndMusic:
     Guid:
-      Data1: 1445674080
-      Data2: 1288067854
-      Data3: 2010618544
-      Data4: -1421756669
-    Path: event:/Music/SecretEnding
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

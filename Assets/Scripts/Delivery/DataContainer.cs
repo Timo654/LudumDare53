@@ -1,8 +1,6 @@
-using FMOD.Studio;
 using FMODUnity;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "New Level Data", menuName = "Level Data Container")]
 [Serializable]

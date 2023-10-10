@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using FMODUnity;
 using DG.Tweening;
+using FMODUnity;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class OPScript : MonoBehaviour
 {
@@ -43,7 +43,7 @@ public class OPScript : MonoBehaviour
         _nextImage = transform.GetChild(1).GetComponent<Image>();
         AudioManager._instance.InitializeMusic(music);
         if (currentSprite < sfxRef.Length)
-            RuntimeManager.PlayOneShot(sfxRef[currentSprite]); 
+            RuntimeManager.PlayOneShot(sfxRef[currentSprite]);
     }
     void Update()
     {
@@ -59,7 +59,7 @@ public class OPScript : MonoBehaviour
             {
                 StartCoroutine(FadeSprites(openingSprites[currentSprite]));
                 if (currentSprite < sfxRef.Length)
-                    RuntimeManager.PlayOneShot(sfxRef[currentSprite]); 
+                    RuntimeManager.PlayOneShot(sfxRef[currentSprite]);
             }
             else
             {

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using FMOD.Studio;
 public class Player_Walk : MonoBehaviour
 {
     [Header("Components")]
@@ -22,13 +20,13 @@ public class Player_Walk : MonoBehaviour
     private float turnSpeed;
 
     [Header("Movement Stats")]
-    [SerializeField, Range(0f, 20f)] [Tooltip("Maximum movement speed")] public float maxSpeed = 10f;
-    [SerializeField, Range(0f, 100f)] [Tooltip("How fast to reach max speed")] public float maxAcceleration = 52f;
-    [SerializeField, Range(0f, 100f)] [Tooltip("How fast to stop after letting go")] public float maxDecceleration = 52f;
-    [SerializeField, Range(0f, 100f)] [Tooltip("How fast to stop when changing direction")] public float maxTurnSpeed = 80f;
-    [SerializeField, Range(0f, 100f)] [Tooltip("How fast to reach max speed when in mid-air")] public float maxAirAcceleration;
-    [SerializeField, Range(0f, 100f)] [Tooltip("How fast to stop in mid-air when no direction is used")] public float maxAirDeceleration;
-    [SerializeField, Range(0f, 100f)] [Tooltip("How fast to stop when changing direction when in mid-air")] public float maxAirTurnSpeed = 80f;
+    [SerializeField, Range(0f, 20f)][Tooltip("Maximum movement speed")] public float maxSpeed = 10f;
+    [SerializeField, Range(0f, 100f)][Tooltip("How fast to reach max speed")] public float maxAcceleration = 52f;
+    [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop after letting go")] public float maxDecceleration = 52f;
+    [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop when changing direction")] public float maxTurnSpeed = 80f;
+    [SerializeField, Range(0f, 100f)][Tooltip("How fast to reach max speed when in mid-air")] public float maxAirAcceleration;
+    [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop in mid-air when no direction is used")] public float maxAirDeceleration;
+    [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop when changing direction when in mid-air")] public float maxAirTurnSpeed = 80f;
     [SerializeField] private Animator playerAnimator;
     [Header("Current State")]
     public bool onGround;
@@ -37,8 +35,9 @@ public class Player_Walk : MonoBehaviour
     public ParticleSystem dust;
     // Audio
     public EventInstance playerFootsteps;
-    
-    private void Start() {
+
+    private void Start()
+    {
         playerFootsteps = AudioManager._instance.CreateInstance(FMODEvents.instance.playerFootsteps);
     }
 
@@ -47,7 +46,6 @@ public class Player_Walk : MonoBehaviour
         dust.Play();
     }
 
-    // Start is called before the first frame update
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -86,7 +84,6 @@ public class Player_Walk : MonoBehaviour
         //The value will read -1 when pressing left, 0 when idle, and 1 when pressing right.
         if (!PauseMenu.GameIsPaused)
         {
-            //Debug.Log("DirectionX: " + context.ReadValue<float>());
             directionX = context.ReadValue<float>();
         }
         else
@@ -131,7 +128,7 @@ public class Player_Walk : MonoBehaviour
         turnSpeed = onGround ? maxTurnSpeed : maxAirTurnSpeed;
 
         if (pressingKey)
-        {                 
+        {
             //If the sign (i.e. positive or negative) of our input direction doesn't match our movement, it means we're turning around and so should use the turn speed stat.
             if (Mathf.Sign(directionX) != Mathf.Sign(velocity.x))
             {
@@ -155,14 +152,15 @@ public class Player_Walk : MonoBehaviour
         {
             // get the playback state
             PLAYBACK_STATE playbackState;
-            playerFootsteps.getPlaybackState (out playbackState);
-            if (playbackState.Equals(PLAYBACK_STATE.STOPPED)) {
+            playerFootsteps.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
                 playerFootsteps.start();
             }
         }
         else
         {
-           playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
         //Update the Rigidbody with this new velocity
         body.velocity = velocity;

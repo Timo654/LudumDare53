@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,8 @@ public class VolumeSlider : MonoBehaviour
 {
     public AudioManager audioManager;
 
-    private enum VolumeType {
+    private enum VolumeType
+    {
         MUSIC,
         SFX,
     }
@@ -17,13 +16,16 @@ public class VolumeSlider : MonoBehaviour
 
     private Slider volumeSlider;
 
-    private void Awake() {
+    private void Awake()
+    {
         volumeSlider = this.GetComponentInChildren<Slider>();
         audioManager = AudioManager._instance;
     }
 
-    private void Update() {
-        switch(volumeType) {
+    private void Update()
+    {
+        switch (volumeType)
+        {
             case VolumeType.MUSIC:
                 volumeSlider.value = audioManager.musicVolume;
                 break;
@@ -36,21 +38,23 @@ public class VolumeSlider : MonoBehaviour
         }
     }
 
-public void OnSliderValueChanged()  {
-    switch(volumeType) {
-        case VolumeType.MUSIC:
-            audioManager.musicVolume = volumeSlider.value;
-            PlayerPrefs.SetFloat("MusicVolume", volumeSlider.value);
-            break;
-        case VolumeType.SFX:
-            audioManager.SFXVolume = volumeSlider.value;
-            PlayerPrefs.SetFloat("SFXVolume", volumeSlider.value);
-            break;
-        default:
-            Debug.LogWarning("Volume Type not supported: " + volumeType);
-            break;
+    public void OnSliderValueChanged()
+    {
+        switch (volumeType)
+        {
+            case VolumeType.MUSIC:
+                audioManager.musicVolume = volumeSlider.value;
+                PlayerPrefs.SetFloat("MusicVolume", volumeSlider.value);
+                break;
+            case VolumeType.SFX:
+                audioManager.SFXVolume = volumeSlider.value;
+                PlayerPrefs.SetFloat("SFXVolume", volumeSlider.value);
+                break;
+            default:
+                Debug.LogWarning("Volume Type not supported: " + volumeType);
+                break;
+        }
     }
-}
 }
 
 

@@ -1,7 +1,7 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
-using FMOD.Studio;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
@@ -71,7 +71,8 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         if (_instance && _instance != this)
         {
             Destroy(gameObject);
@@ -80,18 +81,21 @@ public class AudioManager : MonoBehaviour
         InitializeInstance(this);
     }
 
-    public EventInstance CreateInstance(EventReference eventReference) {
+    public EventInstance CreateInstance(EventReference eventReference)
+    {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
         eventInstances.Add(eventInstance);
         return eventInstance;
     }
 
-    private void Update() {
+    private void Update()
+    {
         musicBus.setVolume(musicVolume);
         sfxBus.setVolume(SFXVolume);
     }
 
-    public void InitializeMusic(EventReference musicEventReference) {
+    public void InitializeMusic(EventReference musicEventReference)
+    {
         musicEventInstance = CreateInstance(musicEventReference);
         musicEventInstance.start();
 
@@ -116,7 +120,8 @@ public class AudioManager : MonoBehaviour
         return state != PLAYBACK_STATE.STOPPED;
     }
 
-    private void CleanUp() {
+    private void CleanUp()
+    {
         if (eventInstances != null)
         {
             foreach (EventInstance eventInstance in eventInstances)
@@ -125,10 +130,11 @@ public class AudioManager : MonoBehaviour
                 eventInstance.release();
             }
         }
-        
+
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         CleanUp();
     }
 }

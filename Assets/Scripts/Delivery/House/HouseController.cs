@@ -9,8 +9,9 @@ public class HouseController : MonoBehaviour
     public int houseDistMin = 20;
     public int houseDistMax = 40;
     public float houseY = -1.91f;
-    public float bottomTreeY = -2f;
+    public float bottomTreeMaxY = -2f;
     public float topTreeY = -1.4f;
+    public float bottomTreeMinY = -3.85f;
     public GameObject housePrefab;
     public GameObject treePrefab;
     public GameObject endTrigger;
@@ -33,7 +34,7 @@ public class HouseController : MonoBehaviour
                 // could be better
                 if (Random.value > 0.5f)
                 {
-                    tree = Instantiate(treePrefab, new Vector3(tree_loc, Random.Range(-3.85f, bottomTreeY), 0), Quaternion.identity).GetComponent<SpriteRenderer>();
+                    tree = Instantiate(treePrefab, new Vector3(tree_loc, Random.Range(bottomTreeMinY, bottomTreeMaxY), 0), Quaternion.identity).GetComponent<SpriteRenderer>();
                     tree.sortingOrder = 11;
                 }
                 else

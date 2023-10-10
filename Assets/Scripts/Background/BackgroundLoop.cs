@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundLoop : MonoBehaviour
@@ -12,7 +10,7 @@ public class BackgroundLoop : MonoBehaviour
     void Start()
     {
         mainCamera = gameObject.GetComponent<Camera>();
-        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z)); // TODO - does not play well with resizing during gameplay, webgl issue mainly
         foreach (GameObject obj in levels)
         {
             loadChildObjects(obj);
@@ -22,10 +20,10 @@ public class BackgroundLoop : MonoBehaviour
     {
         float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x - choke;
         int childsNeeded = (int)Mathf.Ceil(screenBounds.x * 2 / objectWidth);
-        GameObject clone = Instantiate(obj) as GameObject;
+        GameObject clone = Instantiate(obj);
         for (int i = 0; i <= childsNeeded; i++)
         {
-            GameObject c = Instantiate(clone) as GameObject;
+            GameObject c = Instantiate(clone);
             c.transform.SetParent(obj.transform);
             c.transform.position = new Vector3(objectWidth * i, obj.transform.position.y, obj.transform.position.z);
             c.name = obj.name + i;

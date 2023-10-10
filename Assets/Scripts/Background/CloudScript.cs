@@ -31,7 +31,7 @@ public class CloudScript : MonoBehaviour
             spawnPosition = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
             spawnPosition.x -= width / 2;
         }
-            
+
         else
         {
             spawnPosition = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
@@ -51,7 +51,8 @@ public class CloudScript : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        else if (Camera.main.WorldToViewportPoint(transform.position + Vector3.right * width).x > 2) {
+        else if (Camera.main.WorldToViewportPoint(transform.position + Vector3.right * width).x > 2)
+        {
             gameObject.SetActive(false);
         }
     }
