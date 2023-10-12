@@ -10,7 +10,7 @@ public class OptionsMenu : MonoBehaviour
     public Toggle fullscreenToggle;
     public Button backButton;
     [SerializeField] GameObject resolutionOption;
-    private void Start()
+    private void Awake()
     {
         if (BuildConstants.isWebGL)
         {
@@ -34,11 +34,8 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
-        if (Screen.fullScreen)
-        {
-            fullscreenToggle.isOn = true;
-        }
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        fullscreenToggle.isOn = Screen.fullScreen;
     }
 
     public void SetSFXVolume(float volume)
