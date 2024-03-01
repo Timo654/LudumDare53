@@ -23,11 +23,11 @@ public class MainMenuHandler : MonoBehaviour
 
     public void PlayGame()
     {
-        LevelChangerScript._instance.FadeToLevel("Opening");
+        LevelChanger._instance.FadeToLevel("Opening");
     }
     public void OpenCredits()
     {
-        LevelChangerScript._instance.FadeToLevel("Credits");
+        LevelChanger._instance.FadeToLevel("Credits");
     }
 
     private void OnEnable()
@@ -128,12 +128,21 @@ public class MainMenuHandler : MonoBehaviour
             }
             else
             {
-                mainMenu.SetActive(false);
-                EventSystem.current.SetSelectedGameObject(backroomsPlayBtn);
-                gameObject.GetComponent<Animator>().Play("To_MenuB");
-                inBackrooms = true;
+
+                GoToBackrooms();
             }
 
+        }
+    }
+
+    public void GoToBackrooms()
+    {
+        if (mainMenu.activeSelf)
+        {
+            mainMenu.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(backroomsPlayBtn);
+            gameObject.GetComponent<Animator>().Play("To_MenuB");
+            inBackrooms = true;
         }
     }
 
@@ -145,7 +154,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void BPlayPressed()
     {
-        LevelChangerScript._instance.FadeToLevel("LvB_Delivery");
+        LevelChanger._instance.FadeToLevel("LvB_Delivery");
     }
 
     public void OnLoadFinish()

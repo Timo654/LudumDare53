@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LoadBankAndScene : MonoBehaviour
 {
     [FMODUnity.BankRef]
     public List<string> banks;
+    public static event Action OnBanksLoaded;
 
     private void Awake()
     {
@@ -29,6 +30,6 @@ public class LoadBankAndScene : MonoBehaviour
         {
             yield return null;
         }
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        OnBanksLoaded?.Invoke();
     }
 }

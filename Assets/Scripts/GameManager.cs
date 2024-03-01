@@ -333,7 +333,7 @@ public class GameManager : MonoBehaviour
     IEnumerator DelaySceneLoad(float delay, string scene)
     {
         yield return new WaitForSeconds(delay);
-        LevelChangerScript._instance.FadeToLevel(scene);
+        LevelChanger._instance.FadeToLevel(scene);
     }
 
     public void AddScore(int scoreToAdd)

@@ -12,6 +12,6 @@ public class EndingManager : MonoBehaviour
     IEnumerator Ending()
     {
         yield return new WaitForSecondsRealtime(5f);
-        LevelChangerScript._instance.FadeToLevel("Credits");
+        LevelChanger._instance.FadeToLevel("Credits");
     }
 }

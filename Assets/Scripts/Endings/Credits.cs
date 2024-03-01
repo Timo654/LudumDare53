@@ -39,6 +39,6 @@ public class Credits : MonoBehaviour
 
     public void OnCreditsEnd()
     {
-        LevelChangerScript._instance.FadeToLevel("MainMenu");
+        LevelChanger._instance.FadeToLevel("MainMenu");
     }
 }

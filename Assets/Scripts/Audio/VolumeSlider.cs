@@ -18,12 +18,8 @@ public class VolumeSlider : MonoBehaviour
 
     private void Awake()
     {
-        volumeSlider = this.GetComponentInChildren<Slider>();
-        audioManager = AudioManager._instance;
-    }
-
-    private void Update()
-    {
+        volumeSlider = GetComponentInChildren<Slider>();
+        audioManager = AudioManager.Instance;
         switch (volumeType)
         {
             case VolumeType.MUSIC:
@@ -40,6 +36,7 @@ public class VolumeSlider : MonoBehaviour
 
     public void OnSliderValueChanged()
     {
+        if (volumeSlider == null) return;
         switch (volumeType)
         {
             case VolumeType.MUSIC:

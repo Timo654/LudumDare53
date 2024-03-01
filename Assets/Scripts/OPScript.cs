@@ -69,7 +69,7 @@ public class OPScript : MonoBehaviour
     }
     public void OnOpeningEnd()
     {
-        LevelChangerScript._instance.FadeToLevel(nextScene);
+        LevelChanger._instance.FadeToLevel(nextScene);
     }
 
     IEnumerator FadeSprites(Sprite newSprite)

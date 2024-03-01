@@ -438,9 +438,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Timo Jairus\n\n\n\n\n\n\nEllis Donnik\n\n\n\n\n\n\nTimur Nizamov\n\n\n\n\n\nketrub\njason098\n\n\n\nMi-nk\n\n\nFMOD
-    Studio by Firelight Technologies Pty Ltd.\n\n\nUT M\xE4nguj\xE4mm 2023\n\n\nDid
-    you find all the endings?"
+  m_text: "Timo Jairus\n\n\n\n\n\n\nEllis Donnik\n\n\n\n\n\n\nTimur Nizamov\n\n\n\n\n\nketrub\njason098\n\n\n\nMi-nk\nVeronika
+    Kukk\n\nFMOD Studio by Firelight Technologies Pty Ltd.\n\n\nUT M\xE4nguj\xE4mm
+    2023\n\n\nDid you find all the endings?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
   m_sharedMaterial: {fileID: -4870790103433255552, guid: 62f075e6fc0b49b44a8c5ddf0051f2cf, type: 2}
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1617850414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae06e3c799d61d4491e9b8b62ab9e17, type: 3}
+  m_Script: {fileID: 11500000, guid: 50de32a6e3794984bba4eddb8a53d37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1617850416}
